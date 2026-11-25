@@ -15,7 +15,7 @@ export const SEO: React.FC<SEOProps> = ({
 }) => {
   useEffect(() => {
     // Set page title
-    document.title = `${title} | VK Perfume`;
+    document.title = `${title} | VK Perfumes`;
 
     // Set meta description
     let metaDesc = document.querySelector('meta[name="description"]');
@@ -29,7 +29,7 @@ export const SEO: React.FC<SEOProps> = ({
     // Set Open Graph title
     let ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
-      ogTitle.setAttribute('content', `${title} | VK Perfume`);
+      ogTitle.setAttribute('content', `${title} | VK Perfumes`);
     }
 
     // Set Open Graph description

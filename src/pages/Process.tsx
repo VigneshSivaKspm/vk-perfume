@@ -35,7 +35,7 @@ export const Process: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Eight-Stage Manufacturing & Formulation Process"
-        description="Follow the complete 16-week production timeline from Tamil Nadu botanical harvests to Class 10,000 cleanroom bottling and export dispatch at VK Perfume."
+        description="Follow the complete 16-week production timeline from Tamil Nadu botanical harvests to Class 10,000 cleanroom bottling and export dispatch at VK Perfumes."
       />
 
       <PageBackground variant="process" />

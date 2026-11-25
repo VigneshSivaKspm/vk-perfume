@@ -59,12 +59,12 @@ export const Navbar: React.FC = () => {
             <Link
               to="/"
               className="flex items-center gap-2.5 sm:gap-3 shrink-0 group focus:outline-none focus:ring-2 focus:ring-gold/50 rounded-lg select-none"
-              title="VK Perfume — Return to Home"
+              title="VK Perfumes — Return to Home"
             >
               <div className="relative w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shrink-0">
                 <img
                   src={COMPANY_INFO.monogramAsset}
-                  alt="VK Perfume Crowned Monogram"
+                  alt="VK Perfumes Crowned Monogram"
                   className="w-full h-full object-contain filter drop-shadow-xs"
                   width="40"
                   height="40"
@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-serif text-base sm:text-lg xl:text-xl font-semibold tracking-wider text-charcoal leading-none group-hover:text-gold transition-colors whitespace-nowrap">
-                  VK PERFUME
+                  VK PERFUMES
                 </span>
                 <span className="text-[8px] sm:text-[8.5px] xl:text-[9px] tracking-[0.22em] uppercase font-medium text-gold font-sans mt-0.5 whitespace-nowrap">
                   Haute Parfumerie • Tamil Nadu
@@ -247,7 +247,7 @@ export const Navbar: React.FC = () => {
                   className="w-8 h-8 object-contain"
                 />
                 <div>
-                  <div className="font-serif font-semibold text-charcoal text-base">VK Perfume</div>
+                  <div className="font-serif font-semibold text-charcoal text-base">VK Perfumes</div>
                   <div className="text-[10px] text-gold uppercase tracking-widest">Tamil Nadu, India</div>
                 </div>
               </div>

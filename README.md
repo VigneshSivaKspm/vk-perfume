@@ -1,17 +1,17 @@
-# VK Perfume — Haute Parfumerie & Luxury Fragrance Manufacturer
+# VK Perfumes — Haute Parfumerie & Luxury Fragrance Manufacturer
 **Tamil Nadu, India**
 
-A bespoke, production-grade luxury digital experience developed for **VK Perfume** (`VK Perfume Manufacturing Private Limited`), uniting South Indian botanical heritage with European haute parfumerie science.
+A bespoke, production-grade luxury digital experience developed for **VK Perfumes** (`VK Perfumes Manufacturing Private Limited`), uniting South Indian botanical heritage with European haute parfumerie science.
 
 ---
 
 ## 💎 Brand Identity & Asset Integration
 
-- **Official Brand Name:** VK Perfume
+- **Official Brand Name:** VK Perfumes
 - **Tagline:** The Art of Scent. Crafted with character. Made to be remembered.
 - **Brand Assets Integrated:**
   - **Crowned VK Monogram (`public/assets/brand/Crowned VK Monogram in Teal and Gold.png`):** High-resolution transparent 32bpp Argb monogram featuring beveled emerald/teal, dark sapphire, and radiant gold accents. Used in navigation, preloader, corporate storytelling, and certification seals.
-  - **Isolated VK Perfume Banner (`public/assets/brand/Isolated VK Perfume Logo.png`):** Master brand banner featuring the Crowned VK crest and bespoke typography, utilized in the homepage hero and footer showcase.
+  - **Isolated VK Perfumes Banner (`public/assets/brand/Isolated VK Perfume Logo.png`):** Master brand banner featuring the Crowned VK crest and bespoke typography, utilized in the homepage hero and footer showcase.
   - **Favicons & App Icons:** 32x32 favicon, Apple Touch Icon, and 512x512 app icons integrated into `index.html`.
 
 ---
@@ -87,6 +87,6 @@ npm run preview
 
 ---
 
-*VK Perfume Manufacturing Private Limited • Tamil Nadu, India.*
+*VK Perfumes Manufacturing Private Limited • Tamil Nadu, India.*
 "# vk-perfume" 
 "# vk-perfume" 

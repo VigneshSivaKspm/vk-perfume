@@ -27,7 +27,7 @@ export const Collections: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="The Five Haute Collections"
-        description="Explore the five upcoming signature fragrance flacons by VK Perfume: Imperial Oud, Madurai Jasmine Lumière, Coromandel Oceanic Mist, Soleil de Coonoor Citrus, and Velours Vanilla."
+        description="Explore the five upcoming signature fragrance flacons by VK Perfumes: Imperial Oud, Madurai Jasmine Lumière, Coromandel Oceanic Mist, Soleil de Coonoor Citrus, and Velours Vanilla."
       />
 
       <PageBackground variant="collections" />

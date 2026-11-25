@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send, Check, MessageSquare, Clock, Copy, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, Check, MessageSquare, Clock, Copy, ExternalLink } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
 import { COMPANY_INFO } from '../data/company';
@@ -48,7 +48,7 @@ export const Contact: React.FC = () => {
   const targetEmail = enquiryType === 'private-label' ? COMPANY_INFO.contact.b2bEmail : COMPANY_INFO.contact.email;
 
   const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(
-    `[VK Perfume ${enquiryType.toUpperCase()}] Project Inquiry from ${formData.name || 'Client'}`
+    `[VK Perfumes ${enquiryType.toUpperCase()}] Project Inquiry from ${formData.name || 'Client'}`
   )}&body=${encodeURIComponent(
     `Client Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nCompany: ${formData.company}\nEnquiry Type: ${enquiryType}\nQuantity: ${formData.estimatedQuantity}\n\nProject Brief:\n${formData.message}`
   )}`;
@@ -57,7 +57,7 @@ export const Contact: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Contact & Commercial Inquiries"
-        description="Initiate wholesale partnerships, private-label manufacturing briefs, or general inquiries with VK Perfume in Tamil Nadu, India."
+        description="Initiate wholesale partnerships, private-label manufacturing briefs, or general inquiries with VK Perfumes in Tamil Nadu, India."
       />
 
       <PageBackground variant="contact" />
@@ -272,7 +272,7 @@ export const Contact: React.FC = () => {
               <div className="flex items-center gap-3">
                 <img
                   src={COMPANY_INFO.monogramAsset}
-                  alt="VK Perfume Monogram"
+                  alt="VK Perfumes Monogram"
                   className="w-10 h-10 object-contain"
                 />
                 <div>
@@ -302,6 +302,16 @@ export const Contact: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-charcoal block">Phone:</strong>
+                    <a href={`tel:${COMPANY_INFO.contact.supportPhone.replace(/\s/g, '')}`} className="text-charcoal hover:text-gold transition-colors">
+                      {COMPANY_INFO.contact.supportPhone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
                   <Clock className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-charcoal block">Laboratory Office Hours:</strong>
@@ -312,7 +322,7 @@ export const Contact: React.FC = () => {
 
               <div className="pt-4 border-t border-champagne/40">
                 <a
-                  href={`https://wa.me/914428550100?text=${encodeURIComponent('Hello VK Perfume, I am inquiring regarding custom fragrance manufacturing.')}`}
+                  href={`https://wa.me/${COMPANY_INFO.contact.whatsappNumber}?text=${encodeURIComponent('Hello VK Perfumes, I am inquiring regarding custom fragrance manufacturing.')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-full bg-botanical/15 text-botanical-dark hover:bg-botanical/25 text-xs font-semibold uppercase tracking-wider transition-colors"

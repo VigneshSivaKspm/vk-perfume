@@ -1,6 +1,6 @@
 export const COMPANY_INFO = {
-  name: 'VK Perfume',
-  legalName: 'VK Perfume Manufacturing Private Limited',
+  name: 'VK Perfumes',
+  legalName: 'VK Perfumes Manufacturing Private Limited',
   tagline: 'Haute Parfumerie & Precision Contract Manufacturing',
   monogramAsset: '/assets/brand/Crowned VK Monogram in Teal and Gold.png',
   bannerAsset: '/assets/brand/Isolated VK Perfume Logo.png',
@@ -42,8 +42,9 @@ export const COMPANY_INFO = {
   contact: {
     email: 'enquiries@vkperfume.com',
     b2bEmail: 'privatelabel@vkperfume.com',
-    supportPhone: '+91 (0) 44 2855 0100', // Clearly labeled editorial placeholder
-    address: 'VK Perfume Fragrance Campus, Tamil Nadu, India',
+    supportPhone: '+91 90876 15708',
+    whatsappNumber: '919087615708', // digits only, for wa.me links
+    address: 'VK Perfumes Fragrance Campus, Tamil Nadu, India',
     businessHours: 'Monday – Friday: 09:30 – 18:00 IST'
   }
 };

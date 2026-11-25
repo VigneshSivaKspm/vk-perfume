@@ -11,7 +11,7 @@ export const About: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden">
       <SEO
         title="About the Maison & Botanical Heritage"
-        description="Discover VK Perfume's journey in Tamil Nadu, India. Blending centuries of South Indian botanical distillation with European haute parfumerie science."
+        description="Discover VK Perfumes' journey in Tamil Nadu, India. Blending centuries of South Indian botanical distillation with European haute parfumerie science."
       />
 
       <PageBackground variant="about" />
@@ -27,7 +27,7 @@ export const About: React.FC = () => {
             Crafting Sovereign Scents at the Botanical Crossroads of India
           </h1>
           <p className="text-base sm:text-lg text-charcoal-light font-light leading-relaxed">
-            Founded with an uncompromising devotion to olfactory excellence, VK Perfume stands as Tamil Nadu’s vanguard haute parfumerie house and premier private-label contract manufacturing facility.
+            Founded with an uncompromising devotion to olfactory excellence, VK Perfumes stands as Tamil Nadu’s vanguard haute parfumerie house and premier private-label contract manufacturing facility.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export const About: React.FC = () => {
           <div className="max-w-md">
             <span className="text-xs font-semibold uppercase tracking-widest text-gold">Official Corporate Identity</span>
             <h3 className="text-2xl sm:text-3xl font-serif text-charcoal font-medium mt-1">
-              VK Perfume Manufacturing
+              VK Perfumes Manufacturing
             </h3>
             <p className="text-xs text-charcoal-light font-light mt-2 leading-relaxed">
               Our emblem—the crowned monogram adorned in teal, sapphire, and radiant antique gold—symbolizes the sovereign dignity of rare natural extracts and the precision of modern alchemy.
@@ -45,7 +45,7 @@ export const About: React.FC = () => {
           <div className="max-w-sm sm:max-w-md">
             <img
               src={COMPANY_INFO.bannerAsset}
-              alt="VK Perfume Official Banner"
+              alt="VK Perfumes Official Banner"
               className="w-full object-contain filter drop-shadow-sm"
               width="450"
               height="160"
@@ -67,7 +67,7 @@ export const About: React.FC = () => {
                 For millennia, Tamil Nadu has supplied the world with some of the most precious aromatic substances known to perfumery: the ethereal Sambac Jasmine (Madurai Malli), deeply balsamic vanilla from the sunlit plantations of Pollachi, mountain mosses from the misty Nilgiris, and rich vetiver from Cuddalore.
               </p>
               <p className="text-sm sm:text-base text-charcoal-light font-light leading-relaxed">
-                Historically, these magnificent raw materials were exported as crude concentrates to European fragrance hubs. VK Perfume was created to change this paradigm: by performing world-class extraction, formulation, maceration, and luxury bottling directly within Tamil Nadu.
+                Historically, these magnificent raw materials were exported as crude concentrates to European fragrance hubs. VK Perfumes was created to change this paradigm: by performing world-class extraction, formulation, maceration, and luxury bottling directly within Tamil Nadu.
               </p>
             </div>
 
@@ -147,7 +147,7 @@ export const About: React.FC = () => {
       {/* Bottom CTA */}
       <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
         <h2 className="text-3xl sm:text-4xl font-serif text-charcoal font-medium">
-          Collaborate with VK Perfume
+          Collaborate with VK Perfumes
         </h2>
         <p className="text-sm text-charcoal-light font-light max-w-xl mx-auto leading-relaxed">
           From proprietary juice formulation to turn-key finished product manufacturing, we invite luxury brand owners, hospitality leaders, and retailers to discover our capabilities.

@@ -137,7 +137,7 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
             <g transform="translate(95, 210)">
               <rect x="0" y="0" width="110" height="68" rx="2" fill="#1C1006" stroke="#B59A68" strokeWidth="1.2" />
               <rect x="4" y="4" width="102" height="60" rx="1" fill="none" stroke="#D4BE8D" strokeWidth="0.6" strokeDasharray="2,2" />
-              <text x="55" y="22" fill="#D4BE8D" fontSize="8" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="3">VK PERFUME</text>
+              <text x="55" y="22" fill="#D4BE8D" fontSize="8" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="3">VK PERFUMES</text>
               <line x1="30" y1="28" x2="80" y2="28" stroke="#B59A68" strokeWidth="0.75" />
               <text x="55" y="42" fill="#FAF8F4" fontSize="11" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.5">ROYAL OUD</text>
               <text x="55" y="55" fill="#D4BE8D" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EXTRAIT DE PARFUM</text>

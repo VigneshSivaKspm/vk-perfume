@@ -47,7 +47,7 @@ export const FragranceDetail: React.FC = () => {
     <div className="pt-24 pb-24 overflow-hidden transition-colors duration-700" style={{ backgroundColor: fragrance.colors.bgLight }}>
       <SEO
         title={`${fragrance.name} (${fragrance.category})`}
-        description={`${fragrance.name}: ${fragrance.story} Distinctive concept flacon engineered by VK Perfume in Tamil Nadu, India.`}
+        description={`${fragrance.name}: ${fragrance.story} Distinctive concept flacon engineered by VK Perfumes in Tamil Nadu, India.`}
       />
 
       <PageBackground variant={bgVariant} />

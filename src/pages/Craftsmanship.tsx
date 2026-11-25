@@ -58,7 +58,7 @@ export const Craftsmanship: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Botanical Craftsmanship & Distillation Science"
-        description="Explore the rare botanicals of Tamil Nadu—from Madurai Jasmine and Pollachi Vanilla to Nilgiri herbs—distilled into haute parfumerie by VK Perfume."
+        description="Explore the rare botanicals of Tamil Nadu—from Madurai Jasmine and Pollachi Vanilla to Nilgiri herbs—distilled into haute parfumerie by VK Perfumes."
       />
 
       <PageBackground variant="craftsmanship" />

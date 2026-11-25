@@ -40,7 +40,7 @@ export const UpcomingLaunch: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Exclusive Tamil Nadu Fragrance Launch Showcase 2026"
-        description="Preview the official launch of VK Perfume's five signature fragrance flacons in Tamil Nadu. Reserve priority VIP olfactive invitations across Chennai, Coimbatore, and Madurai."
+        description="Preview the official launch of VK Perfumes' five signature fragrance flacons in Tamil Nadu. Reserve priority VIP olfactive invitations across Chennai, Coimbatore, and Madurai."
       />
 
       <PageBackground variant="launch" />

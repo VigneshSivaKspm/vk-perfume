@@ -3,8 +3,8 @@ import type { FAQItem } from '../types';
 export const FAQ_DATA: FAQItem[] = [
   {
     category: 'Manufacturing',
-    question: 'Where is VK Perfume located and what are your facility capabilities?',
-    answer: 'VK Perfume operates specialized distillation and research facilities based in Tamil Nadu, India. Our operations encompass botanical extraction, cleanroom compounding, maceration aging vaults, and automated bottling lines compliant with international cosmetic Good Manufacturing Practices (cGMP).'
+    question: 'Where is VK Perfumes located and what are your facility capabilities?',
+    answer: 'VK Perfumes operates specialized distillation and research facilities based in Tamil Nadu, India. Our operations encompass botanical extraction, cleanroom compounding, maceration aging vaults, and automated bottling lines compliant with international cosmetic Good Manufacturing Practices (cGMP).'
   },
   {
     category: 'Manufacturing',

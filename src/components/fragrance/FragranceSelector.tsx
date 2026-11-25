@@ -176,7 +176,7 @@ export const FragranceSelector: React.FC = () => {
         </AnimatePresence>
 
         <p className="text-center text-xs text-charcoal-light/70 mt-8 font-light">
-          *Note: Presented as an artistic fragrance personality exploration by VK Perfume master compounding studio.
+          *Note: Presented as an artistic fragrance personality exploration by VK Perfumes master compounding studio.
         </p>
       </div>
     </section>

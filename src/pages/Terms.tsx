@@ -10,7 +10,7 @@ export const Terms: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Terms of Formulation & Contract Manufacturing"
-        description="Terms and conditions governing manufacturing consultations, private label agreements, and pre-launch exhibitions at VK Perfume."
+        description="Terms and conditions governing manufacturing consultations, private label agreements, and pre-launch exhibitions at VK Perfumes."
       />
 
       <PageBackground variant="minimal" />
@@ -53,7 +53,7 @@ export const Terms: React.FC = () => {
             <section className="space-y-2">
               <h2 className="text-lg font-serif font-semibold text-charcoal">3. Intellectual Property</h2>
               <p>
-                The VK Perfume brand, crowned monogram, typography, and original bottle silhouette geometries are the exclusive intellectual property of {COMPANY_INFO.legalName}. Client custom formulation IP rights are transferred upon fulfillment of commercial terms as stipulated in bilateral contracts.
+                The VK Perfumes brand, crowned monogram, typography, and original bottle silhouette geometries are the exclusive intellectual property of {COMPANY_INFO.legalName}. Client custom formulation IP rights are transferred upon fulfillment of commercial terms as stipulated in bilateral contracts.
               </p>
             </section>
           </div>

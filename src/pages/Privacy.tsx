@@ -10,7 +10,7 @@ export const Privacy: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Privacy Policy & Data Stewardship"
-        description="Privacy policy and data protection disclosures for VK Perfume Manufacturing Private Limited."
+        description="Privacy policy and data protection disclosures for VK Perfumes Manufacturing Private Limited."
       />
 
       <PageBackground variant="minimal" />
@@ -39,7 +39,7 @@ export const Privacy: React.FC = () => {
             <section className="space-y-2">
               <h2 className="text-lg font-serif font-semibold text-charcoal">1. Information Collection & Purpose</h2>
               <p>
-                {COMPANY_INFO.legalName} ("VK Perfume", "we", "us") collects personal and commercial contact data submitted voluntarily via our website forms (including VIP Launch Registry, B2B Private Label Inquiries, and Wholesale Inquiries). This data is strictly utilized to process project briefs, dispatch event allocations, and provide client correspondence.
+                {COMPANY_INFO.legalName} ("VK Perfumes", "we", "us") collects personal and commercial contact data submitted voluntarily via our website forms (including VIP Launch Registry, B2B Private Label Inquiries, and Wholesale Inquiries). This data is strictly utilized to process project briefs, dispatch event allocations, and provide client correspondence.
               </p>
             </section>
 

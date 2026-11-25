@@ -11,7 +11,7 @@ export const PrivateLabel: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Private Label & Turn-Key OEM Fragrance Manufacturing"
-        description="Launch your bespoke perfume brand with VK Perfume. End-to-end custom formulation, flacon mold tooling, rigid box design, and certified compounding in Tamil Nadu, India."
+        description="Launch your bespoke perfume brand with VK Perfumes. End-to-end custom formulation, flacon mold tooling, rigid box design, and certified compounding in Tamil Nadu, India."
       />
 
       <PageBackground variant="private-label" />
@@ -26,7 +26,7 @@ export const PrivateLabel: React.FC = () => {
           Private Label Perfumery, Engineered to Perfection
         </h1>
         <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          From an initial olfactive moodboard to master carton dispatch, VK Perfume serves as the discreet formulation and manufacturing partner for luxury designers, hospitality brands, and niche perfume houses.
+          From an initial olfactive moodboard to master carton dispatch, VK Perfumes serves as the discreet formulation and manufacturing partner for luxury designers, hospitality brands, and niche perfume houses.
         </p>
       </section>
 

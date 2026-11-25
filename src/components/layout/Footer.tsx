@@ -31,14 +31,14 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-4">
               <img
                 src={COMPANY_INFO.monogramAsset}
-                alt="VK Perfume Monogram"
+                alt="VK Perfumes Monogram"
                 className="w-14 h-14 object-contain filter drop-shadow-sm"
                 width="56"
                 height="56"
               />
               <div>
                 <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-charcoal">
-                  VK PERFUME
+                  VK PERFUMES
                 </h3>
                 <p className="text-xs uppercase tracking-[0.2em] text-gold font-medium">
                   Haute Parfumerie & Precision Manufacturing • Tamil Nadu, India
@@ -170,6 +170,7 @@ export const Footer: React.FC = () => {
             <div className="text-xs text-charcoal/70 space-y-2">
               <p>Email: <a href={`mailto:${COMPANY_INFO.contact.email}`} className="text-charcoal hover:text-gold transition-colors font-medium">{COMPANY_INFO.contact.email}</a></p>
               <p>B2B: <a href={`mailto:${COMPANY_INFO.contact.b2bEmail}`} className="text-charcoal hover:text-gold transition-colors font-medium">{COMPANY_INFO.contact.b2bEmail}</a></p>
+              <p>Phone: <a href={`tel:${COMPANY_INFO.contact.supportPhone.replace(/\s/g, '')}`} className="text-charcoal hover:text-gold transition-colors font-medium">{COMPANY_INFO.contact.supportPhone}</a></p>
               <p>Hours: {COMPANY_INFO.contact.businessHours}</p>
               <div className="pt-2">
                 <Link
@@ -189,7 +190,7 @@ export const Footer: React.FC = () => {
           <div className="max-w-xs sm:max-w-sm">
             <img
               src={COMPANY_INFO.bannerAsset}
-              alt="VK Perfume Premium Fragrance Banner"
+              alt="VK Perfumes Premium Fragrance Banner"
               className="w-full object-contain filter drop-shadow-sm opacity-90 hover:opacity-100 transition-opacity"
               width="360"
               height="130"

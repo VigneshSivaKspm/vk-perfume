@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { Navbar } from './components/navigation/Navbar';
 import { Footer } from './components/layout/Footer';
+import { ChatWidget } from './components/chat/ChatWidget';
 import { COMPANY_INFO } from './data/company';
 
 // Lazy-loaded route pages for optimal Core Web Vitals and performance
@@ -37,7 +38,7 @@ const PagePreloader: React.FC = () => (
     </div>
     <div className="flex flex-col items-center">
       <span className="font-serif text-sm tracking-widest text-charcoal font-semibold uppercase">
-        VK PERFUME
+        VK PERFUMES
       </span>
       <span className="text-[10px] uppercase tracking-[0.25em] text-gold mt-0.5">
         Haute Parfumerie
@@ -106,6 +107,7 @@ export const App: React.FC = () => {
         </main>
 
         <Footer />
+        <ChatWidget />
       </div>
     </Router>
   );

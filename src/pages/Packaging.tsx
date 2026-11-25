@@ -11,7 +11,7 @@ export const Packaging: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Bespoke Bottle & Luxury Packaging Design"
-        description="Discover custom perfume bottle silhouettes, weighted metal caps, and rigid presentation boxes engineered by VK Perfume in Tamil Nadu."
+        description="Discover custom perfume bottle silhouettes, weighted metal caps, and rigid presentation boxes engineered by VK Perfumes in Tamil Nadu."
       />
 
       <PageBackground variant="packaging" />

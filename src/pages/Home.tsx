@@ -28,7 +28,7 @@ export const Home: React.FC = () => {
     <div className="relative overflow-hidden">
       <SEO
         title="Haute Parfumerie & Luxury Fragrance Manufacturer"
-        description="VK Perfume is a premier luxury fragrance manufacturer based in Tamil Nadu, India. Specializing in bespoke distillation, private-label manufacturing, and five upcoming signature fragrance collections."
+        description="VK Perfumes is a premier luxury fragrance manufacturer based in Tamil Nadu, India. Specializing in bespoke distillation, private-label manufacturing, and five upcoming signature fragrance collections."
       />
 
       {/* Bespoke Page Background Animation */}
@@ -94,7 +94,7 @@ export const Home: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.55 }}
               className="text-sm sm:text-base text-charcoal-light font-light max-w-xl leading-relaxed"
             >
-              Rooted in the fertile botanical heritage of Tamil Nadu, VK Perfume unites ancient indigenous distillation wisdom with European formulation science. We create transcendent olfactive identities and precision private-label manufacturing for distinguished brands worldwide.
+              Rooted in the fertile botanical heritage of Tamil Nadu, VK Perfumes unites ancient indigenous distillation wisdom with European formulation science. We create transcendent olfactive identities and precision private-label manufacturing for distinguished brands worldwide.
             </motion.p>
 
             {/* 850-1450ms: Interactive CTAs & Verified Credentials */}
@@ -227,13 +227,13 @@ export const Home: React.FC = () => {
               <div className="relative rounded-3xl overflow-hidden border border-champagne/60 shadow-luxury bg-ivory-50 p-8 sm:p-12 flex flex-col items-center text-center">
                 <img
                   src={COMPANY_INFO.monogramAsset}
-                  alt="VK Perfume Monogram"
+                  alt="VK Perfumes Monogram"
                   className="w-40 h-40 sm:w-48 sm:h-48 object-contain filter drop-shadow-md mb-6"
                   width="192"
                   height="192"
                 />
                 <h3 className="font-serif text-2xl font-semibold text-charcoal">
-                  VK PERFUME
+                  VK PERFUMES
                 </h3>
                 <p className="text-xs uppercase tracking-widest text-gold font-medium mt-1">
                   Private Distillation & Manufacturing
@@ -266,7 +266,7 @@ export const Home: React.FC = () => {
               </p>
 
               <p className="text-base text-charcoal-light font-light leading-relaxed">
-                At VK Perfume, we do not simply blend fragrance oils. We operate as an end-to-end manufacturing and formulation authority. We partner directly with agricultural cooperatives to secure rare botanicals, apply supercritical fluid extraction to capture untainted top notes, and age our blends in dark temperature-regulated stainless tanks to ensure enduring longevity and refined sillage.
+                At VK Perfumes, we do not simply blend fragrance oils. We operate as an end-to-end manufacturing and formulation authority. We partner directly with agricultural cooperatives to secure rare botanicals, apply supercritical fluid extraction to capture untainted top notes, and age our blends in dark temperature-regulated stainless tanks to ensure enduring longevity and refined sillage.
               </p>
 
               {/* 4 Pillars Grid */}
@@ -335,7 +335,7 @@ export const Home: React.FC = () => {
                   Formulate Your Proprietary N° 06
                 </h3>
                 <p className="text-xs text-ivory-300/80 font-light mt-3 leading-relaxed">
-                  VK Perfume collaborates with luxury hospitality groups, fashion designers, and private brands to sculpt custom signature perfumes, bespoke bottles, and secondary packaging from concept to market.
+                  VK Perfumes collaborates with luxury hospitality groups, fashion designers, and private brands to sculpt custom signature perfumes, bespoke bottles, and secondary packaging from concept to market.
                 </p>
               </div>
 
@@ -541,7 +541,7 @@ export const Home: React.FC = () => {
               <div className="text-center space-y-4">
                 <img
                   src={COMPANY_INFO.bannerAsset}
-                  alt="VK Perfume Logo"
+                  alt="VK Perfumes Logo"
                   className="w-64 max-w-full mx-auto filter drop-shadow-md"
                 />
                 <p className="text-xs text-ivory-300 font-light italic">
@@ -569,7 +569,7 @@ export const Home: React.FC = () => {
                 Contract Manufacturing & OEM
               </span>
               <h3 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-charcoal font-medium">
-                Bring Your Fragrance Brand to Life with VK Perfume
+                Bring Your Fragrance Brand to Life with VK Perfumes
               </h3>
               <p className="text-sm sm:text-base text-charcoal-light font-light max-w-2xl leading-relaxed">
                 Whether you seek a bespoke luxury fragrance for a designer brand, hotel signature scenting, or full-scale private label contract manufacturing, our master formulating laboratory and cleanroom facility deliver turn-key perfection.

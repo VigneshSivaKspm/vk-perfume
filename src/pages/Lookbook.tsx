@@ -20,7 +20,7 @@ export const Lookbook: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Editorial Lookbook & Visual Archive"
-        description="A visual journey through VK Perfume's flacon design, Tamil Nadu botanical harvests, cleanroom formulation suites, and luxury rigid packaging."
+        description="A visual journey through VK Perfumes' flacon design, Tamil Nadu botanical harvests, cleanroom formulation suites, and luxury rigid packaging."
       />
 
       <PageBackground variant="lookbook" />

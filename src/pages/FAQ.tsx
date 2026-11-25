@@ -27,7 +27,7 @@ export const FAQ: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Frequently Asked Questions & Standards"
-        description="Find answers to common questions regarding VK Perfume's contract manufacturing, private label minimum order quantities, formulation timelines, and Tamil Nadu launch."
+        description="Find answers to common questions regarding VK Perfumes' contract manufacturing, private label minimum order quantities, formulation timelines, and Tamil Nadu launch."
       />
 
       <PageBackground variant="minimal" />

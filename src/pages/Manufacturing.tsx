@@ -10,7 +10,7 @@ export const Manufacturing: React.FC = () => {
     <div className="pt-28 pb-24 overflow-hidden bg-ivory-100">
       <SEO
         title="Manufacturing Infrastructure & Cleanroom Capabilities"
-        description="Explore VK Perfume's state-of-the-art distillation, formulation, maceration vaults, and automated bottling cleanrooms in Tamil Nadu, India."
+        description="Explore VK Perfumes' state-of-the-art distillation, formulation, maceration vaults, and automated bottling cleanrooms in Tamil Nadu, India."
       />
 
       <PageBackground variant="manufacturing" />
@@ -25,7 +25,7 @@ export const Manufacturing: React.FC = () => {
           Precision Contract Fragrance Manufacturing
         </h1>
         <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Operating from our integrated research and manufacturing campus in Tamil Nadu, VK Perfume delivers world-class olfactive engineering, from botanical distillation to certified shelf-ready retail packaging.
+          Operating from our integrated research and manufacturing campus in Tamil Nadu, VK Perfumes delivers world-class olfactive engineering, from botanical distillation to certified shelf-ready retail packaging.
         </p>
       </section>
 
