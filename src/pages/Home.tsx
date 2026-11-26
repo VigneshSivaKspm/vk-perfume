@@ -39,9 +39,9 @@ export const Home: React.FC = () => {
           Choreography: Background (0-400ms) -> Headline (250-900ms) -> Bottle (500-1300ms) -> CTAs (850-1450ms)
           ========================================================================= */}
       <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-ivory-100">
-        {/* Soft Architectural Ambient Lights */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-champagne/30 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-gold/10 rounded-full blur-[90px] pointer-events-none" />
+        {/* Soft Architectural Ambient Lights matching Crowned VK Monogram */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] max-w-full rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle closest-side, rgba(44,238,236,0.2), transparent)' }} />
+        <div className="absolute top-1/3 right-10 w-[520px] h-[520px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle closest-side, rgba(185,181,42,0.2), transparent)' }} />
         <div className="absolute inset-0 noise-overlay pointer-events-none" />
 
         <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -73,7 +73,9 @@ export const Home: React.FC = () => {
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-charcoal font-normal tracking-tight leading-[0.98]"
               >
                 THE ART <br />
-                <span className="italic font-display font-light text-gold-dark">OF SCENT.</span>
+                <span className="italic font-display font-light bg-gradient-to-r from-[#757014] via-[#02A262] to-[#01706C] bg-clip-text text-transparent pr-2">
+                  OF SCENT.
+                </span>
               </motion.h1>
 
               {/* 500-1100ms: Supporting Headline */}
@@ -127,15 +129,15 @@ export const Home: React.FC = () => {
               className="pt-6 border-t border-champagne/40 grid grid-cols-3 gap-4 max-w-lg"
             >
               <div>
-                <div className="font-serif text-xl sm:text-2xl font-semibold text-charcoal">5 Flacons</div>
+                <div className="font-['Bodoni_Moda'] lining-nums tabular-nums text-lg sm:text-xl font-semibold text-charcoal">5 Flacons</div>
                 <div className="text-[10px] uppercase tracking-wider text-charcoal-light">Bespoke Silhouettes</div>
               </div>
               <div>
-                <div className="font-serif text-xl sm:text-2xl font-semibold text-charcoal">100% IFRA</div>
+                <div className="font-['Bodoni_Moda'] lining-nums tabular-nums text-lg sm:text-xl font-semibold text-charcoal">100% IFRA</div>
                 <div className="text-[10px] uppercase tracking-wider text-charcoal-light">Global Safety Standards</div>
               </div>
               <div>
-                <div className="font-serif text-xl sm:text-2xl font-semibold text-charcoal">Tamil Nadu</div>
+                <div className="font-['Bodoni_Moda'] lining-nums tabular-nums text-lg sm:text-xl font-semibold text-charcoal">Tamil Nadu</div>
                 <div className="text-[10px] uppercase tracking-wider text-charcoal-light">Distillation Campus</div>
               </div>
             </motion.div>
@@ -151,8 +153,8 @@ export const Home: React.FC = () => {
             >
               {/* Background Glow Circle */}
               <div
-                className="absolute w-72 h-72 sm:w-88 sm:h-88 rounded-full filter blur-3xl opacity-35 transition-colors duration-700 pointer-events-none"
-                style={{ backgroundColor: FRAGRANCES[heroActiveFragrance].colors.accent }}
+                className="absolute w-80 h-80 sm:w-[26rem] sm:h-[26rem] rounded-full opacity-50 pointer-events-none"
+                style={{ background: `radial-gradient(circle closest-side, ${FRAGRANCES[heroActiveFragrance].colors.accent} 0%, transparent 100%)` }}
               />
 
               {/* Dynamic 3D Bottle Visualizer */}
@@ -165,7 +167,7 @@ export const Home: React.FC = () => {
               </div>
 
               {/* Quick Switcher for the 5 bottles in Hero */}
-              <div className="mt-4 flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-champagne/60 shadow-xs z-20">
+              <div className="mt-4 flex items-center gap-2 bg-white/80 px-4 py-2 rounded-full border border-champagne/60 shadow-xs z-20">
                 {FRAGRANCES.map((f, i) => (
                   <button
                     key={f.id}
@@ -224,8 +226,8 @@ export const Home: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Visual Column: Authentic Monogram & Distillation Imagery */}
             <div className="lg:col-span-5 relative">
-              <div className="relative rounded-3xl overflow-hidden border border-champagne/60 shadow-luxury bg-ivory-50 p-8 sm:p-12 flex flex-col items-center text-center">
-                <img
+              <div className="relative rounded-3xl overflow-hidden border border-champagne/60 shadow-luxury bg-ivory-50 p-8 sm:p-12 pb-24 sm:pb-24 flex flex-col items-center text-center">
+                <img loading="lazy" decoding="async"
                   src={COMPANY_INFO.monogramAsset}
                   alt="VK Perfumes Monogram"
                   className="w-40 h-40 sm:w-48 sm:h-48 object-contain filter drop-shadow-md mb-6"
@@ -238,15 +240,15 @@ export const Home: React.FC = () => {
                 <p className="text-xs uppercase tracking-widest text-gold font-medium mt-1">
                   Private Distillation & Manufacturing
                 </p>
-                <div className="w-12 h-0.5 bg-gold/40 my-4" />
+                <div className="w-14 h-0.5 bg-gradient-to-r from-[#B9B52A] via-[#02A262] to-[#2CEEEC] my-4 rounded-full" />
                 <p className="text-xs text-charcoal-light font-light leading-relaxed">
                   Established in Tamil Nadu, our campus houses cleanroom formulation suites, low-temperature distillation stills, and maceration vaults designed to meet the rigorous demands of global niche perfume houses.
                 </p>
               </div>
 
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -right-4 sm:right-6 bg-charcoal text-ivory-100 p-4 rounded-2xl shadow-luxury max-w-[200px] border border-gold/30">
-                <div className="text-xs uppercase tracking-widest text-gold font-semibold">Tamil Nadu Roots</div>
+              <div className="absolute -bottom-6 right-4 sm:right-6 bg-[#001442] text-ivory-100 p-4 rounded-2xl shadow-luxury max-w-[200px] border border-brand-aqua/40">
+                <div className="text-xs uppercase tracking-widest text-brand-goldLight font-semibold">Tamil Nadu Roots</div>
                 <div className="text-xs text-ivory-200 mt-1 font-light">Global Haute Parfumerie Standards</div>
               </div>
             </div>
@@ -325,10 +327,10 @@ export const Home: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-charcoal text-ivory-100 rounded-3xl p-8 border border-gold/40 shadow-luxury flex flex-col justify-between"
+              className="bg-[#001442] text-ivory-100 rounded-3xl p-8 border border-brand-aqua/35 shadow-luxury flex flex-col justify-between"
             >
               <div>
-                <span className="text-xs font-serif text-gold tracking-widest uppercase font-semibold">
+                <span className="text-xs font-serif text-brand-goldLight tracking-widest uppercase font-semibold">
                   Bespoke Client Atelier
                 </span>
                 <h3 className="text-3xl font-serif font-medium mt-3 text-ivory-100">
@@ -342,7 +344,7 @@ export const Home: React.FC = () => {
               <div className="pt-8">
                 <Link
                   to="/private-label"
-                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-gold text-charcoal-dark text-xs uppercase tracking-widest font-semibold hover:bg-gold-light transition-colors"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-brand-teal text-pure text-xs uppercase tracking-widest font-semibold hover:bg-brand-emerald transition-colors"
                 >
                   <span>Private Label Consultation</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -486,15 +488,16 @@ export const Home: React.FC = () => {
       {/* =========================================================================
           SECTION 13: UPCOMING TAMIL NADU FRAGRANCE LAUNCH SECTION
           ========================================================================= */}
-      <section className="py-24 sm:py-32 bg-charcoal text-ivory-100 relative overflow-hidden">
+      <section className="py-24 sm:py-32 bg-[#001442] text-ivory-100 relative overflow-hidden">
         <div className="absolute inset-0 noise-overlay pointer-events-none" />
-        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
+        <div className="absolute -top-48 -right-48 w-[34rem] h-[34rem] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle closest-side, rgba(44,238,236,0.2), transparent)' }} />
+        <div className="absolute -bottom-44 -left-40 w-[28rem] h-[28rem] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle closest-side, rgba(185,181,42,0.15), transparent)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-gold/40 text-xs uppercase tracking-widest font-semibold text-gold">
-                <Calendar className="w-3.5 h-3.5 text-gold" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-brand-aqua/40 text-xs uppercase tracking-widest font-semibold text-brand-goldLight">
+                <Calendar className="w-3.5 h-3.5 text-brand-aqua" />
                 <span>Tamil Nadu 2026 Showcase</span>
               </div>
 
@@ -508,19 +511,19 @@ export const Home: React.FC = () => {
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 py-4 border-y border-ivory-100/10">
                 <div>
-                  <div className="font-serif text-2xl text-gold font-semibold">Chennai</div>
+                  <div className="font-serif text-2xl text-brand-aqua font-semibold">Chennai</div>
                   <div className="text-[10px] uppercase text-ivory-300/80 tracking-wider">Preview Salon</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl text-gold font-semibold">Coimbatore</div>
+                  <div className="font-serif text-2xl text-brand-aqua font-semibold">Coimbatore</div>
                   <div className="text-[10px] uppercase text-ivory-300/80 tracking-wider">Boutique Partners</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl text-gold font-semibold">Madurai</div>
+                  <div className="font-serif text-2xl text-brand-aqua font-semibold">Madurai</div>
                   <div className="text-[10px] uppercase text-ivory-300/80 tracking-wider">Heritage Origin</div>
                 </div>
                 <div>
-                  <div className="font-serif text-2xl text-gold font-semibold">Online</div>
+                  <div className="font-serif text-2xl text-brand-aqua font-semibold">Online</div>
                   <div className="text-[10px] uppercase text-ivory-300/80 tracking-wider">VIP Priority Allocation</div>
                 </div>
               </div>
@@ -528,7 +531,7 @@ export const Home: React.FC = () => {
               <div className="pt-2">
                 <Link
                   to="/upcoming-launch"
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gold text-charcoal-dark text-xs uppercase tracking-widest font-semibold hover:bg-gold-light transition-colors duration-300 shadow-gold-glow"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-brand-teal text-pure text-xs uppercase tracking-widest font-semibold hover:bg-brand-emerald transition-colors duration-300 shadow-teal-glow"
                 >
                   <span>Reserve Launch Showcase Invitation</span>
                   <ArrowRight className="w-4 h-4" />
@@ -537,18 +540,20 @@ export const Home: React.FC = () => {
             </div>
 
             {/* Teaser Bottle Lineup */}
-            <div className="lg:col-span-5 flex items-center justify-center p-8 rounded-3xl bg-white/5 border border-ivory-100/10 backdrop-blur-md">
+            <div className="lg:col-span-5 flex items-center justify-center p-8 rounded-3xl bg-white/5 border border-brand-aqua/25">
               <div className="text-center space-y-4">
-                <img
-                  src={COMPANY_INFO.bannerAsset}
-                  alt="VK Perfumes Logo"
-                  className="w-64 max-w-full mx-auto filter drop-shadow-md"
-                />
+                <div className="inline-block rounded-2xl bg-white/95 px-6 py-4 shadow-md">
+                  <img loading="lazy" decoding="async"
+                    src={COMPANY_INFO.bannerAsset}
+                    alt="VK Perfumes Logo"
+                    className="w-60 max-w-full mx-auto"
+                  />
+                </div>
                 <p className="text-xs text-ivory-300 font-light italic">
                   "Five artistic collections. Five distinct silhouettes. One sovereign identity."
                 </p>
                 <div className="pt-2">
-                  <span className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-gold/40 text-gold bg-gold/10">
+                  <span className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-brand-aqua/40 text-brand-goldLight bg-brand-teal/20">
                     Official Pre-Launch Exhibition
                   </span>
                 </div>

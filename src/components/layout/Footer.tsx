@@ -20,8 +20,9 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-ivory-200/90 border-t border-champagne/60 text-charcoal pt-20 pb-12 relative overflow-hidden">
+      <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#B9B52A] via-[#02A262] to-[#2CEEEC] opacity-90" />
       {/* Ambient background glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
+      <div className="absolute -top-24 right-1/4 w-[34rem] h-[34rem] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle closest-side, rgba(44,238,236,0.2), transparent)' }} />
       <div className="absolute inset-0 noise-overlay pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -29,7 +30,7 @@ export const Footer: React.FC = () => {
         <div className="pb-16 border-b border-champagne/60 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center gap-4">
-              <img
+              <img loading="lazy" decoding="async"
                 src={COMPANY_INFO.monogramAsset}
                 alt="VK Perfumes Monogram"
                 className="w-14 h-14 object-contain filter drop-shadow-sm"
@@ -51,7 +52,7 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Launch VIP Registration in Footer */}
-          <div className="lg:col-span-5 bg-white/70 backdrop-blur-md p-6 rounded-2xl border border-champagne/60 shadow-xs">
+          <div className="lg:col-span-5 bg-white/90 p-6 rounded-2xl border border-champagne/60 shadow-xs">
             <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-gold mb-2">
               <Sparkles className="w-3.5 h-3.5 text-gold" />
               <span>Tamil Nadu Launch Showcase</span>
@@ -188,7 +189,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Banner Image Display (Authentic asset integration) */}
         <div className="py-8 border-t border-champagne/50 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="max-w-xs sm:max-w-sm">
-            <img
+            <img loading="lazy" decoding="async"
               src={COMPANY_INFO.bannerAsset}
               alt="VK Perfumes Premium Fragrance Banner"
               className="w-full object-contain filter drop-shadow-sm opacity-90 hover:opacity-100 transition-opacity"

@@ -63,7 +63,7 @@ export const FragranceSelector: React.FC = () => {
                 {isSelected && (
                   <motion.div
                     layoutId="selectorPill"
-                    className="absolute inset-0 rounded-full border-2 border-gold/40 pointer-events-none"
+                    className="absolute inset-0 rounded-full border-2 border-brand-aqua/60 pointer-events-none"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
@@ -80,13 +80,13 @@ export const FragranceSelector: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-white/85 backdrop-blur-xl rounded-3xl p-6 sm:p-10 lg:p-14 border border-champagne/60 shadow-luxury grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
+            className="bg-white/85 rounded-3xl p-6 sm:p-10 lg:p-14 border border-champagne/60 shadow-luxury grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
           >
             {/* Left: Bottle Interactive 3D Visualizer */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center relative min-h-[360px] sm:min-h-[440px]">
               <div
-                className="absolute inset-0 rounded-full filter blur-2xl opacity-20 pointer-events-none"
-                style={{ backgroundColor: activeFragrance.colors.accent }}
+                className="absolute inset-0 rounded-full opacity-30 pointer-events-none"
+                style={{ background: `radial-gradient(circle closest-side, ${activeFragrance.colors.accent} 0%, transparent 100%)` }}
               />
               <FragranceBottle
                 type={activeFragrance.visualType}

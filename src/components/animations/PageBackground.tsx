@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import { usePageTransition } from './pageTransitionStore';
 
 export type BackgroundAnimationVariant =
   | 'home'
@@ -24,7 +25,7 @@ interface PageBackgroundProps {
   className?: string;
 }
 
-export const PageBackground: React.FC<PageBackgroundProps> = ({
+export const PageBackgroundCanvas: React.FC<PageBackgroundProps> = ({
   variant = 'home',
   className = '',
 }) => {
@@ -107,7 +108,7 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
       let vx = (Math.random() - 0.5) * 0.4;
       let vy = -0.2 - Math.random() * 0.4; // slight upward drift default
       let size = 1.5 + Math.random() * 3;
-      let color = 'rgba(181, 154, 104, '; // gold default
+      let color = 'rgba(1, 112, 108, '; // VK Perfume jewel teal default
       let baseAlpha = 0.2 + Math.random() * 0.35;
       let shape: Particle['shape'] = 'circle';
       const rotation = Math.random() * Math.PI * 2;
@@ -116,42 +117,47 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
 
       switch (v) {
         case 'home':
-          // Golden luminous dust motes
-          color = Math.random() > 0.6 ? 'rgba(181, 154, 104, ' : 'rgba(233, 217, 191, ';
+          // VK Perfume monogram motes: crown gold, emerald, and aqua-teal
+          color =
+            Math.random() > 0.72
+              ? 'rgba(185, 181, 42, '
+              : Math.random() > 0.42
+                ? 'rgba(2, 162, 98, '
+                : 'rgba(26, 226, 189, ';
           size = 1.2 + Math.random() * 2.8;
-          baseAlpha = 0.15 + Math.random() * 0.35;
+          baseAlpha = 0.14 + Math.random() * 0.28;
           vy = -0.15 - Math.random() * 0.25;
           shape = 'dust';
           break;
 
         case 'about':
-          // Soft drifting jasmine petals & botanical spores
+          // Soft drifting jasmine petals & emerald botanical spores
           shape = Math.random() > 0.4 ? 'petal' : 'circle';
-          color = shape === 'petal' ? 'rgba(255, 255, 255, ' : 'rgba(142, 156, 133, '; // petal white / botanical green
+          color = shape === 'petal' ? 'rgba(255, 255, 255, ' : 'rgba(2, 162, 98, ';
           size = shape === 'petal' ? 5 + Math.random() * 6 : 2 + Math.random() * 2;
           vy = 0.2 + Math.random() * 0.4; // drifting gently downward
           vx = (Math.random() - 0.5) * 0.6;
-          baseAlpha = 0.25 + Math.random() * 0.35;
+          baseAlpha = 0.22 + Math.random() * 0.3;
           break;
 
         case 'collections':
-          // Morphing fragrance chromatic dust
+          // Morphing VK Perfume monogram chromatic dust
           const colColors = [
-            'rgba(181, 154, 104, ', // gold
-            'rgba(0, 150, 136, ',   // brand teal
-            'rgba(72, 169, 197, ',  // oceanic blue
-            'rgba(212, 163, 115, ', // jasmine blush
-            'rgba(198, 139, 89, '   // vanilla caramel
+            'rgba(1, 112, 108, ',  // jewel teal
+            'rgba(2, 162, 98, ',   // emerald green
+            'rgba(44, 238, 236, ', // aqua cyan
+            'rgba(185, 181, 42, ', // crown gold
+            'rgba(1, 62, 67, '     // deep ocean teal
           ];
           color = colColors[Math.floor(Math.random() * colColors.length)];
           size = 2 + Math.random() * 3.5;
-          baseAlpha = 0.18 + Math.random() * 0.3;
+          baseAlpha = 0.16 + Math.random() * 0.28;
           shape = 'dust';
           break;
 
         case 'fragrance-oud':
-          // Rising incense smoke embers & warm amber sparks
-          color = Math.random() > 0.5 ? 'rgba(212, 160, 80, ' : 'rgba(140, 78, 22, ';
+          // Rising incense smoke embers & crown-gold sparks
+          color = Math.random() > 0.5 ? 'rgba(1, 112, 108, ' : 'rgba(185, 181, 42, ';
           size = 1.5 + Math.random() * 3.2;
           vy = -0.4 - Math.random() * 0.5; // rising like smoke
           vx = (Math.random() - 0.5) * 0.4;
@@ -162,7 +168,7 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
         case 'fragrance-jasmine':
           // Floating white petals drifting with gentle sway
           shape = 'petal';
-          color = Math.random() > 0.5 ? 'rgba(255, 255, 255, ' : 'rgba(247, 235, 225, ';
+          color = Math.random() > 0.5 ? 'rgba(255, 255, 255, ' : 'rgba(220, 245, 238, ';
           size = 5 + Math.random() * 7;
           vy = 0.25 + Math.random() * 0.35;
           vx = (Math.random() - 0.5) * 0.5;
@@ -172,7 +178,7 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
         case 'fragrance-aquatic':
           // Rising sea-mist bubbles and ocean droplets
           shape = 'bubble';
-          color = Math.random() > 0.4 ? 'rgba(72, 169, 197, ' : 'rgba(176, 222, 235, ';
+          color = Math.random() > 0.4 ? 'rgba(44, 238, 236, ' : 'rgba(176, 235, 232, ';
           size = 2 + Math.random() * 5;
           vy = -0.35 - Math.random() * 0.45;
           vx = (Math.random() - 0.5) * 0.3;
@@ -182,7 +188,7 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
         case 'fragrance-citrus':
           // Sparkling effervescent citrus bubbles & sunbeam flares
           shape = 'bubble';
-          color = Math.random() > 0.5 ? 'rgba(245, 223, 118, ' : 'rgba(212, 175, 55, ';
+          color = Math.random() > 0.5 ? 'rgba(232, 226, 106, ' : 'rgba(185, 181, 42, ';
           size = 1.8 + Math.random() * 4;
           vy = -0.45 - Math.random() * 0.55;
           vx = (Math.random() - 0.5) * 0.35;
@@ -190,9 +196,9 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
           break;
 
         case 'fragrance-vanilla':
-          // Molten caramel glowing halo particles
+          // Emerald glowing halo particles
           shape = 'circle';
-          color = Math.random() > 0.5 ? 'rgba(198, 139, 89, ' : 'rgba(233, 185, 140, ';
+          color = Math.random() > 0.5 ? 'rgba(2, 162, 98, ' : 'rgba(26, 226, 189, ';
           size = 3 + Math.random() * 5;
           vy = -0.15 - Math.random() * 0.25;
           vx = (Math.random() - 0.5) * 0.3;
@@ -202,74 +208,79 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
         case 'manufacturing':
           // Precision crosshair / technical dust
           shape = 'diamond';
-          color = 'rgba(0, 150, 136, '; // cleanroom teal
+          color = Math.random() > 0.5 ? 'rgba(1, 112, 108, ' : 'rgba(26, 226, 189, '; // cleanroom teal/mint
           size = 2 + Math.random() * 2.5;
           vy = -0.15 - Math.random() * 0.2;
           baseAlpha = 0.15 + Math.random() * 0.3;
           break;
 
         case 'private-label':
-          // Shimmering gold diamond facets
+          // Shimmering crown gold & emerald diamond facets
           shape = 'diamond';
-          color = 'rgba(181, 154, 104, ';
+          color = Math.random() > 0.5 ? 'rgba(185, 181, 42, ' : 'rgba(1, 112, 108, ';
           size = 2.5 + Math.random() * 3.5;
           vy = -0.2 - Math.random() * 0.3;
-          baseAlpha = 0.2 + Math.random() * 0.35;
+          baseAlpha = 0.16 + Math.random() * 0.28;
           break;
 
         case 'craftsmanship':
           // Spores & dew drops
           shape = Math.random() > 0.5 ? 'petal' : 'circle';
-          color = 'rgba(142, 156, 133, ';
+          color = Math.random() > 0.45 ? 'rgba(2, 162, 98, ' : 'rgba(26, 226, 189, ';
           size = 3 + Math.random() * 4;
           vy = 0.2 + Math.random() * 0.3;
-          baseAlpha = 0.2 + Math.random() * 0.35;
+          baseAlpha = 0.18 + Math.random() * 0.28;
           break;
 
         case 'packaging':
           // Facet geometric crystal particles
           shape = 'diamond';
-          color = 'rgba(212, 190, 141, ';
+          color = Math.random() > 0.5 ? 'rgba(26, 226, 189, ' : 'rgba(185, 181, 42, ';
           size = 3 + Math.random() * 4;
           vy = -0.2 - Math.random() * 0.25;
-          baseAlpha = 0.2 + Math.random() * 0.35;
+          baseAlpha = 0.16 + Math.random() * 0.28;
           break;
 
         case 'process':
           // Downward flowing river particles
           shape = 'circle';
-          color = 'rgba(181, 154, 104, ';
+          color = Math.random() > 0.5 ? 'rgba(1, 112, 108, ' : 'rgba(2, 162, 98, ';
           size = 2 + Math.random() * 3;
           vy = 0.5 + Math.random() * 0.6; // flowing down
           vx = (Math.random() - 0.5) * 0.2;
-          baseAlpha = 0.2 + Math.random() * 0.35;
+          baseAlpha = 0.16 + Math.random() * 0.28;
           break;
 
         case 'launch':
           // Radiant starburst dust & celebration sparkles
           shape = Math.random() > 0.6 ? 'diamond' : 'circle';
-          color = Math.random() > 0.4 ? 'rgba(212, 175, 55, ' : 'rgba(0, 201, 167, ';
+          color =
+            Math.random() > 0.65
+              ? 'rgba(185, 181, 42, '
+              : Math.random() > 0.35
+                ? 'rgba(2, 162, 98, '
+                : 'rgba(44, 238, 236, ';
           size = 1.5 + Math.random() * 3.5;
           vy = -0.3 - Math.random() * 0.4;
-          baseAlpha = 0.25 + Math.random() * 0.5;
+          baseAlpha = 0.2 + Math.random() * 0.38;
           break;
 
         case 'lookbook':
-          // Golden archival film grain motes
+          // Archival optical motes
           shape = 'dust';
-          color = 'rgba(181, 154, 104, ';
+          color = Math.random() > 0.5 ? 'rgba(1, 112, 108, ' : 'rgba(185, 181, 42, ';
           size = 1.5 + Math.random() * 2.5;
           vy = -0.15 - Math.random() * 0.25;
-          baseAlpha = 0.15 + Math.random() * 0.3;
+          baseAlpha = 0.15 + Math.random() * 0.26;
           break;
 
         case 'contact':
           // Concentric circular ripples
           shape = 'ring';
-          color = 'rgba(181, 154, 104, ';
+          color = Math.random() > 0.5 ? 'rgba(1, 112, 108, ' : 'rgba(2, 162, 98, ';
           size = 4 + Math.random() * 12;
           vy = -0.1 - Math.random() * 0.15;
-          baseAlpha = 0.15 + Math.random() * 0.25;
+          baseAlpha = 0.14 + Math.random() * 0.22;
           break;
 
         default:
@@ -297,8 +308,23 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
     // ==========================================
     let time = 0;
 
-    const render = () => {
-      time += 0.015;
+    // Perf: the canvas sits under the whole page, so keep it cheap.
+    //  - ~30fps is plenty for slow ambient drift
+    //  - skip drawing while the page is scrolling (the browser needs that time)
+    let lastScroll = 0;
+    let lastDraw = 0;
+    const FRAME_MS = 1000 / 30;
+    const onScroll = () => {
+      lastScroll = performance.now();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const render = (now: number = performance.now()) => {
+      animationFrameId = requestAnimationFrame(render);
+      if (document.hidden || now - lastScroll < 140 || now - lastDraw < FRAME_MS) return;
+      lastDraw = now;
+
+      time += 0.03;
       ctx.clearRect(0, 0, width, height);
 
       // 1. Draw Variant-Specific Ambient Glow Fields / Meshes
@@ -377,14 +403,14 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
         }
       }
 
-      animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', onScroll);
     };
   }, [variant]);
 
@@ -399,6 +425,30 @@ export const PageBackground: React.FC<PageBackgroundProps> = ({
   );
 };
 
+export const PageBackground: React.FC<PageBackgroundProps> = ({
+  variant = 'home',
+  className = '',
+}) => {
+  const transitionCtx = usePageTransition();
+
+  useLayoutEffect(() => {
+    transitionCtx?.setBackgroundVariant(variant);
+  }, [transitionCtx, variant]);
+
+  if (transitionCtx) {
+    return null;
+  }
+
+  return <PageBackgroundCanvas variant={variant} className={className} />;
+};
+
+export const PageBackgroundLayer: React.FC = () => {
+  const transitionCtx = usePageTransition();
+  if (!transitionCtx) return null;
+
+  return <PageBackgroundCanvas variant={transitionCtx.backgroundVariant} />;
+};
+
 // ==========================================
 // BESPOKE AMBIENT MESHES PER PAGE VARIANT
 // ==========================================
@@ -411,68 +461,69 @@ function drawVariantBackgroundMeshes(
 ) {
   switch (variant) {
     case 'home': {
-      // 1. Warm golden ambient halo drifting across top-center
+      // 1. Crowned VK emerald-aqua ambient halo drifting across top-center
       const cx = width * 0.5 + Math.sin(time * 0.5) * (width * 0.15);
       const cy = height * 0.28 + Math.cos(time * 0.4) * (height * 0.08);
       const radGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, width * 0.45);
-      radGrad.addColorStop(0, 'rgba(233, 217, 191, 0.22)');
-      radGrad.addColorStop(0.5, 'rgba(181, 154, 104, 0.08)');
-      radGrad.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      radGrad.addColorStop(0, 'rgba(44, 238, 236, 0.12)');
+      radGrad.addColorStop(0.5, 'rgba(2, 162, 98, 0.06)');
+      radGrad.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = radGrad;
       ctx.fillRect(0, 0, width, height);
 
-      // 2. Secondary soft jewel-teal accent halo (brand monogram heritage)
+      // 2. Secondary crown-gold & jewel-teal accent halo
       const tX = width * 0.8 + Math.cos(time * 0.3) * (width * 0.1);
       const tY = height * 0.65 + Math.sin(time * 0.35) * (height * 0.1);
       const tealGrad = ctx.createRadialGradient(tX, tY, 0, tX, tY, width * 0.35);
-      tealGrad.addColorStop(0, 'rgba(0, 150, 136, 0.045)');
-      tealGrad.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      tealGrad.addColorStop(0, 'rgba(1, 112, 108, 0.08)');
+      tealGrad.addColorStop(0.5, 'rgba(185, 181, 42, 0.05)');
+      tealGrad.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = tealGrad;
       ctx.fillRect(0, 0, width, height);
       break;
     }
 
     case 'about': {
-      // Botanical sunlight rays filtering through morning garden
+      // Botanical sunlight rays with crown gold & emerald radiance
       const sx = width * 0.25 + Math.sin(time * 0.3) * 60;
       const sy = height * 0.2;
       const sunGrad = ctx.createRadialGradient(sx, sy, 0, sx, sy, width * 0.5);
-      sunGrad.addColorStop(0, 'rgba(233, 217, 191, 0.28)');
-      sunGrad.addColorStop(0.5, 'rgba(142, 156, 133, 0.08)'); // botanical green warmth
-      sunGrad.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      sunGrad.addColorStop(0, 'rgba(185, 181, 42, 0.11)');
+      sunGrad.addColorStop(0.5, 'rgba(2, 162, 98, 0.07)');
+      sunGrad.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = sunGrad;
       ctx.fillRect(0, 0, width, height);
       break;
     }
 
     case 'collections': {
-      // Morphing multi-chromatic perfume aura
+      // Morphing VK emerald-to-aqua perfume aura
       const x1 = width * 0.3 + Math.sin(time * 0.4) * (width * 0.12);
       const y1 = height * 0.35 + Math.cos(time * 0.3) * (height * 0.1);
       const g1 = ctx.createRadialGradient(x1, y1, 0, x1, y1, width * 0.4);
-      g1.addColorStop(0, 'rgba(181, 154, 104, 0.18)');
-      g1.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      g1.addColorStop(0, 'rgba(2, 162, 98, 0.12)');
+      g1.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = g1;
       ctx.fillRect(0, 0, width, height);
 
       const x2 = width * 0.7 + Math.cos(time * 0.4) * (width * 0.12);
       const y2 = height * 0.6 + Math.sin(time * 0.5) * (height * 0.1);
       const g2 = ctx.createRadialGradient(x2, y2, 0, x2, y2, width * 0.4);
-      g2.addColorStop(0, 'rgba(72, 169, 197, 0.12)'); // sea cyan
-      g2.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      g2.addColorStop(0, 'rgba(44, 238, 236, 0.12)');
+      g2.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = g2;
       ctx.fillRect(0, 0, width, height);
       break;
     }
 
     case 'fragrance-oud': {
-      // Deep desert dusk & smoked amber hearth aura
+      // Deep ocean teal & crown-gold hearth aura
       const ox = width * 0.5 + Math.sin(time * 0.25) * 40;
       const oy = height * 0.35 + Math.cos(time * 0.3) * 30;
       const og = ctx.createRadialGradient(ox, oy, 0, ox, oy, width * 0.45);
-      og.addColorStop(0, 'rgba(140, 78, 22, 0.16)');
-      og.addColorStop(0.5, 'rgba(181, 154, 104, 0.08)');
-      og.addColorStop(1, 'rgba(250, 244, 235, 0)');
+      og.addColorStop(0, 'rgba(1, 112, 108, 0.16)');
+      og.addColorStop(0.5, 'rgba(185, 181, 42, 0.08)');
+      og.addColorStop(1, 'rgba(242, 248, 246, 0)');
       ctx.fillStyle = og;
       ctx.fillRect(0, 0, width, height);
       break;
@@ -483,9 +534,9 @@ function drawVariantBackgroundMeshes(
       const jx = width * 0.5;
       const jy = height * 0.32 + Math.sin(time * 0.3) * 25;
       const jg = ctx.createRadialGradient(jx, jy, 0, jx, jy, width * 0.45);
-      jg.addColorStop(0, 'rgba(255, 240, 230, 0.35)');
-      jg.addColorStop(0.6, 'rgba(212, 163, 115, 0.08)');
-      jg.addColorStop(1, 'rgba(251, 248, 245, 0)');
+      jg.addColorStop(0, 'rgba(220, 250, 242, 0.35)');
+      jg.addColorStop(0.6, 'rgba(26, 226, 189, 0.08)');
+      jg.addColorStop(1, 'rgba(243, 251, 248, 0)');
       ctx.fillStyle = jg;
       ctx.fillRect(0, 0, width, height);
       break;
@@ -496,9 +547,9 @@ function drawVariantBackgroundMeshes(
       const ax = width * 0.5 + Math.sin(time * 0.4) * 50;
       const ay = height * 0.35;
       const ag = ctx.createRadialGradient(ax, ay, 0, ax, ay, width * 0.48);
-      ag.addColorStop(0, 'rgba(72, 169, 197, 0.22)');
-      ag.addColorStop(0.5, 'rgba(30, 96, 125, 0.08)');
-      ag.addColorStop(1, 'rgba(242, 248, 250, 0)');
+      ag.addColorStop(0, 'rgba(44, 238, 236, 0.22)');
+      ag.addColorStop(0.5, 'rgba(1, 112, 108, 0.08)');
+      ag.addColorStop(1, 'rgba(242, 250, 250, 0)');
       ctx.fillStyle = ag;
       ctx.fillRect(0, 0, width, height);
 
@@ -513,7 +564,7 @@ function drawVariantBackgroundMeshes(
       ctx.lineTo(width, 0);
       ctx.lineTo(0, 0);
       ctx.closePath();
-      ctx.fillStyle = 'rgba(72, 169, 197, 0.035)';
+      ctx.fillStyle = 'rgba(44, 238, 236, 0.035)';
       ctx.fill();
       ctx.restore();
       break;
@@ -524,40 +575,40 @@ function drawVariantBackgroundMeshes(
       const cx = width * 0.5 + Math.sin(time * 0.5) * 40;
       const cy = height * 0.3;
       const cg = ctx.createRadialGradient(cx, cy, 0, cx, cy, width * 0.45);
-      cg.addColorStop(0, 'rgba(245, 223, 118, 0.25)');
-      cg.addColorStop(0.5, 'rgba(212, 175, 55, 0.09)');
-      cg.addColorStop(1, 'rgba(252, 250, 242, 0)');
+      cg.addColorStop(0, 'rgba(232, 226, 106, 0.25)');
+      cg.addColorStop(0.5, 'rgba(185, 181, 42, 0.09)');
+      cg.addColorStop(1, 'rgba(250, 251, 240, 0)');
       ctx.fillStyle = cg;
       ctx.fillRect(0, 0, width, height);
       break;
     }
 
     case 'fragrance-vanilla': {
-      // Molten warm honey caramel confectionery glow
+      // Emerald jade confectionery glow
       const vx = width * 0.5;
       const vy = height * 0.35 + Math.cos(time * 0.3) * 25;
       const vg = ctx.createRadialGradient(vx, vy, 0, vx, vy, width * 0.45);
-      vg.addColorStop(0, 'rgba(198, 139, 89, 0.22)');
-      vg.addColorStop(0.5, 'rgba(133, 77, 39, 0.08)');
-      vg.addColorStop(1, 'rgba(250, 245, 240, 0)');
+      vg.addColorStop(0, 'rgba(2, 162, 98, 0.22)');
+      vg.addColorStop(0.5, 'rgba(1, 112, 108, 0.08)');
+      vg.addColorStop(1, 'rgba(242, 250, 246, 0)');
       ctx.fillStyle = vg;
       ctx.fillRect(0, 0, width, height);
       break;
     }
 
     case 'manufacturing': {
-      // Precision cleanroom subtle grid & emerald-teal formulation glow
+      // Precision cleanroom subtle grid & jewel-teal formulation glow
       const mx = width * 0.7;
       const my = height * 0.3;
       const mg = ctx.createRadialGradient(mx, my, 0, mx, my, width * 0.4);
-      mg.addColorStop(0, 'rgba(0, 150, 136, 0.12)');
-      mg.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      mg.addColorStop(0, 'rgba(1, 112, 108, 0.12)');
+      mg.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = mg;
       ctx.fillRect(0, 0, width, height);
 
       // Subtle technical laboratory coordinate grid
       ctx.save();
-      ctx.strokeStyle = 'rgba(181, 154, 104, 0.04)';
+      ctx.strokeStyle = 'rgba(1, 62, 67, 0.05)';
       ctx.lineWidth = 0.5;
       const step = 80;
       for (let x = 0; x < width; x += step) {
@@ -577,13 +628,13 @@ function drawVariantBackgroundMeshes(
     }
 
     case 'private-label': {
-      // Prestige architectural gold foil diagonal shimmer
+      // Prestige architectural crown-gold & teal shimmer
       const px = width * 0.4 + Math.sin(time * 0.3) * 50;
       const py = height * 0.35;
       const pg = ctx.createRadialGradient(px, py, 0, px, py, width * 0.45);
-      pg.addColorStop(0, 'rgba(212, 190, 141, 0.22)');
-      pg.addColorStop(0.5, 'rgba(181, 154, 104, 0.06)');
-      pg.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      pg.addColorStop(0, 'rgba(185, 181, 42, 0.12)');
+      pg.addColorStop(0.5, 'rgba(1, 112, 108, 0.08)');
+      pg.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = pg;
       ctx.fillRect(0, 0, width, height);
       break;
@@ -594,9 +645,9 @@ function drawVariantBackgroundMeshes(
       const lx = width * 0.5;
       const ly = height * 0.3 + Math.sin(time * 0.4) * 30;
       const lg = ctx.createRadialGradient(lx, ly, 0, lx, ly, width * 0.5);
-      lg.addColorStop(0, 'rgba(212, 175, 55, 0.24)');
-      lg.addColorStop(0.5, 'rgba(0, 150, 136, 0.08)');
-      lg.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      lg.addColorStop(0, 'rgba(26, 226, 189, 0.14)');
+      lg.addColorStop(0.5, 'rgba(185, 181, 42, 0.08)');
+      lg.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = lg;
       ctx.fillRect(0, 0, width, height);
       break;
@@ -608,8 +659,8 @@ function drawVariantBackgroundMeshes(
       ctx.save();
       ctx.beginPath();
       ctx.arc(width * 0.5, height * 0.35, rippleRadius, 0, Math.PI * 2);
-      const alpha = Math.max(0, 1 - rippleRadius / (width * 0.4)) * 0.08;
-      ctx.strokeStyle = `rgba(181, 154, 104, ${alpha})`;
+      const alpha = Math.max(0, 1 - rippleRadius / (width * 0.4)) * 0.10;
+      ctx.strokeStyle = `rgba(1, 112, 108, ${alpha})`;
       ctx.lineWidth = 1;
       ctx.stroke();
       ctx.restore();
@@ -617,12 +668,12 @@ function drawVariantBackgroundMeshes(
     }
 
     default: {
-      // Minimal soft warm ivory breathing glow
+      // Minimal soft aqua-teal breathing glow
       const defX = width * 0.5;
       const defY = height * 0.3;
       const defGrad = ctx.createRadialGradient(defX, defY, 0, defX, defY, width * 0.45);
-      defGrad.addColorStop(0, 'rgba(233, 217, 191, 0.16)');
-      defGrad.addColorStop(1, 'rgba(250, 248, 244, 0)');
+      defGrad.addColorStop(0, 'rgba(26, 226, 189, 0.10)');
+      defGrad.addColorStop(1, 'rgba(246, 250, 249, 0)');
       ctx.fillStyle = defGrad;
       ctx.fillRect(0, 0, width, height);
       break;

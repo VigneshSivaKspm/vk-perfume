@@ -47,8 +47,8 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'py-2.5 sm:py-3 bg-white/95 backdrop-blur-md shadow-luxury border-b border-champagne/40'
-            : 'py-3.5 sm:py-4 lg:py-5 bg-ivory-100/85 backdrop-blur-xs'
+            ? 'py-2.5 sm:py-3 bg-white/95 shadow-luxury border-b border-champagne/40'
+            : 'py-3.5 sm:py-4 lg:py-5 bg-ivory-100/95'
         }`}
       >
         {/* Constrained container with safe padding from window edge & scrollbar */}
@@ -109,7 +109,7 @@ export const Navbar: React.FC = () => {
                           {active && (
                             <motion.span
                               layoutId="navActiveUnderline"
-                              className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-gold rounded-full"
+                              className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-gradient-to-r from-[#B9B52A] via-[#02A262] to-[#2CEEEC] rounded-full"
                               transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                             />
                           )}
@@ -125,7 +125,7 @@ export const Navbar: React.FC = () => {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 6, scale: 0.98 }}
                             transition={{ duration: 0.18 }}
-                            className="absolute top-full left-0 mt-1.5 w-72 rounded-2xl bg-white/95 backdrop-blur-xl p-3 border border-champagne/60 shadow-luxury-hover z-50"
+                            className="absolute top-full left-0 mt-1.5 w-72 rounded-2xl bg-white/95 p-3 border border-champagne/60 shadow-luxury-hover z-50"
                           >
                             <div className="text-[10px] uppercase tracking-widest font-semibold text-gold px-3 py-1.5 border-b border-champagne/30">
                               Five Signature Launches
@@ -186,7 +186,7 @@ export const Navbar: React.FC = () => {
                       {active && (
                         <motion.span
                           layoutId="navActiveUnderline"
-                          className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-gold rounded-full"
+                          className="absolute -bottom-1 left-0 right-0 h-[1.5px] bg-gradient-to-r from-[#B9B52A] via-[#02A262] to-[#2CEEEC] rounded-full"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -236,7 +236,7 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[60px] z-40 bg-white/95 backdrop-blur-2xl border-b border-champagne/60 shadow-luxury-hover lg:hidden max-h-[calc(100vh-70px)] overflow-y-auto"
+            className="fixed inset-x-0 top-[60px] z-40 bg-white/95 border-b border-champagne/60 shadow-luxury-hover lg:hidden max-h-[calc(100vh-70px)] overflow-y-auto"
           >
             <div className="px-6 py-8 space-y-6">
               {/* Monogram Brand header */}
@@ -309,9 +309,9 @@ export const Navbar: React.FC = () => {
               <div className="pt-4 border-t border-champagne/40">
                 <Link
                   to="/contact?type=private-label"
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-charcoal text-ivory-100 text-xs uppercase tracking-widest font-medium hover:bg-gold transition-colors"
+                  className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-charcoal text-ivory-100 text-xs uppercase tracking-widest font-medium hover:bg-gold transition-colors"
                 >
-                  <Sparkles className="w-4 h-4 text-gold" />
+                  <Sparkles className="w-4 h-4 text-gold-light group-hover:text-pure transition-colors" />
                   <span>Private Label & B2B Inquiries</span>
                 </Link>
               </div>

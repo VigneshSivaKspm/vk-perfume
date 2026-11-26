@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Box, ArrowRight } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { BottlePackagingViewer } from '../components/fragrance/BottlePackagingViewer';
 
@@ -18,16 +19,22 @@ export const Packaging: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Box className="w-3.5 h-3.5" />
-          <span>Industrial Design & Haptic Luxury</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          The Tactile Architecture of Perfume
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Before a scent touches the air, the flacon speaks to the fingers and the eye. We engineer custom glass silhouettes, weighted metallic closures, and rigid presentation boxes crafted for permanent presence on a vanity.
-        </p>
+        <Reveal variant="compass-pop" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Box className="w-3.5 h-3.5" />
+            <span>Industrial Design & Haptic Luxury</span>
+          </div>
+        </Reveal>
+        <Reveal variant="compass-pop" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            The Tactile Architecture of Perfume
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Before a scent touches the air, the flacon speaks to the fingers and the eye. We engineer custom glass silhouettes, weighted metallic closures, and rigid presentation boxes crafted for permanent presence on a vanity.
+          </p>
+        </Reveal>
       </section>
 
       {/* Interactive Configurator */}

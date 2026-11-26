@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, ChevronDown } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { FAQ_DATA } from '../data/faq';
 
 export const FAQ: React.FC = () => {
@@ -34,16 +35,22 @@ export const FAQ: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <HelpCircle className="w-3.5 h-3.5" />
-          <span>Operational Transparency</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          Frequently Asked Questions
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Clear, verifiable details on our formulation standards, private-label minimum order quantities, and regional distribution policies.
-        </p>
+        <Reveal variant="slide-left" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <HelpCircle className="w-3.5 h-3.5" />
+            <span>Operational Transparency</span>
+          </div>
+        </Reveal>
+        <Reveal variant="slide-left" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            Frequently Asked Questions
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Clear, verifiable details on our formulation standards, private-label minimum order quantities, and regional distribution policies.
+          </p>
+        </Reveal>
 
         {/* Category Filter Pills */}
         <div className="flex flex-wrap justify-center gap-2 mt-8">

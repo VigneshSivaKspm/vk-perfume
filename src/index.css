@@ -4,20 +4,32 @@
 
 @layer base {
   :root {
-    --bg-ivory: #FAF8F4;
-    --color-charcoal: #25231F;
-    --color-gold: #B59A68;
-    --color-teal: #009688;
+    --bg-pure: #FFFFFF;
+    --bg-ivory: #F6FAF9;
+    --bg-porcelain: #EAF2EE;
+    --border-platinum: #D2E2DD;
+    --color-charcoal: #013E43;
+    --color-graphite: #335054;
+    --color-silver: #7B9A94;
+    --color-gold: #B9B52A;
+    --color-teal: #01706C;
+    --brand-navy: #001442;
+    --brand-ocean: #00303F;
+    --brand-deep: #013E43;
+    --brand-emerald: #02A262;
+    --brand-mint: #1AE2BD;
+    --brand-aqua: #2CEEEC;
+    --brand-gold: #B9B52A;
   }
 
   html {
-    scroll-behavior: smooth;
+    /* No CSS scroll-behavior here: Lenis handles smooth scrolling, and the two fight each other */
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   body {
-    background-color: #FAF8F4;
-    color: #25231F;
+    background-color: #F6FAF9;
+    color: #013E43;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -41,54 +53,50 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F4EFE6;
+  background: #F6FAF9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #C2B59F;
+  background: #B8D0C8;
   border-radius: 9999px;
-  border: 1px solid #FAF8F4;
+  border: 1px solid #F6FAF9;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B59A68;
+  background: #01706C;
 }
 
 /* Custom Glass & Luxury Accents */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 217, 203, 0.6);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(210, 226, 221, 0.8);
 }
 
 .glass-panel-dark {
-  background: rgba(37, 35, 31, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(181, 154, 104, 0.25);
+  background: rgba(0, 20, 66, 0.96);
+  border: 1px solid rgba(44, 238, 236, 0.25);
 }
 
 .luxury-border {
-  border-color: rgba(181, 154, 104, 0.28);
+  border-color: rgba(1, 112, 108, 0.25);
 }
 
 .luxury-gradient-gold {
-  background: linear-gradient(135deg, #B59A68 0%, #D4BE8D 50%, #8C7243 100%);
+  background: linear-gradient(135deg, #B9B52A 0%, #02A262 50%, #2CEEEC 100%);
 }
 
 .luxury-gradient-teal {
-  background: linear-gradient(135deg, #0A3641 0%, #008080 50%, #00C9A7 100%);
+  background: linear-gradient(135deg, #001442 0%, #013E43 50%, #01706C 100%);
 }
 
 .luxury-text-gradient-gold {
-  background: linear-gradient(135deg, #8C7243 0%, #B59A68 40%, #5E4B28 100%);
+  background: linear-gradient(135deg, #757014 0%, #02A262 50%, #01706C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .luxury-subtle-pattern {
-  background-image: radial-gradient(#B59A68 0.75px, transparent 0.75px);
+  background-image: radial-gradient(#01706C 0.75px, transparent 0.75px);
   background-size: 24px 24px;
 }
 
@@ -118,4 +126,18 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Lenis smooth-scroll recommended base styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }

@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground, type BackgroundAnimationVariant } from '../components/animations/PageBackground';
+import { Reveal, type RevealStyle } from '../components/animations/Reveal';
 import { FragranceBottle } from '../components/fragrance/FragranceBottle';
 import { FragrancePyramid } from '../components/fragrance/FragrancePyramid';
 import { FragranceCard } from '../components/fragrance/FragranceCard';
@@ -31,6 +32,13 @@ export const FragranceDetail: React.FC = () => {
     : fragrance.visualType === 'aquatic' ? 'fragrance-aquatic'
     : fragrance.visualType === 'citrus' ? 'fragrance-citrus'
     : 'fragrance-vanilla';
+
+  const heroRevealStyle: RevealStyle =
+    fragrance.visualType === 'oud' ? 'rise'
+    : fragrance.visualType === 'jasmine' ? 'petal-float'
+    : fragrance.visualType === 'aquatic' ? 'slide-right'
+    : fragrance.visualType === 'citrus' ? 'compass-pop'
+    : 'card-unfold';
 
   // Related fragrances (other 2 fragrances)
   const relatedFragrances = FRAGRANCES.filter((f) => f.id !== fragrance.id).slice(0, 2);
@@ -67,11 +75,11 @@ export const FragranceDetail: React.FC = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: 3D Bottle Visualizer */}
-          <div className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[420px] sm:min-h-[520px]">
+          <Reveal variant={heroRevealStyle} delay={0.14} className="lg:col-span-6 flex flex-col items-center justify-center relative min-h-[420px] sm:min-h-[520px]">
             {/* Ambient Background Aura */}
             <div
-              className="absolute w-80 h-80 sm:w-96 sm:h-96 rounded-full filter blur-3xl opacity-35 pointer-events-none"
-              style={{ backgroundColor: fragrance.colors.accent }}
+              className="absolute w-96 h-96 sm:w-[30rem] sm:h-[30rem] rounded-full opacity-50 pointer-events-none"
+              style={{ background: `radial-gradient(circle closest-side, ${fragrance.colors.accent} 0%, transparent 100%)` }}
             />
             <FragranceBottle
               type={fragrance.visualType}
@@ -86,10 +94,10 @@ export const FragranceDetail: React.FC = () => {
                 Tilt cursor to inspect glass caustics & specular reflection
               </p>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right Column: Title, Identity & Specs */}
-          <div className="lg:col-span-6 space-y-6">
+          <Reveal variant={heroRevealStyle} delay={0.24} className="lg:col-span-6 space-y-6">
             <div className="flex items-center gap-3">
               <span className="text-xs font-serif text-gold tracking-widest uppercase font-semibold">
                 {fragrance.subtitle}
@@ -120,7 +128,7 @@ export const FragranceDetail: React.FC = () => {
             </p>
 
             {/* Price in Rupees & Flacon Size Selector */}
-            <div className="p-6 rounded-2xl bg-white/90 backdrop-blur-md border border-champagne shadow-luxury space-y-4">
+            <div className="p-6 rounded-2xl bg-white/90 border border-champagne shadow-luxury space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
                 <div>
                   <span className="text-[10px] uppercase tracking-widest font-semibold text-gold block">
@@ -188,7 +196,7 @@ export const FragranceDetail: React.FC = () => {
             </div>
 
             {/* Launch Waitlist Card */}
-            <div className="p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-champagne shadow-luxury space-y-3">
+            <div className="p-6 rounded-2xl bg-white/80 border border-champagne shadow-luxury space-y-3">
               <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-gold">
                 <Calendar className="w-4 h-4 text-gold" />
                 <span>Request Exclusive Launch Preview Allocation</span>
@@ -221,7 +229,7 @@ export const FragranceDetail: React.FC = () => {
                 </form>
               )}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -236,7 +244,7 @@ export const FragranceDetail: React.FC = () => {
 
       {/* Flacon Architecture & Engineering Deep-Dive */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-14 border border-champagne/60 shadow-luxury space-y-8">
+        <div className="bg-white/80 rounded-3xl p-8 sm:p-14 border border-champagne/60 shadow-luxury space-y-8">
           <div className="max-w-2xl">
             <span className="text-xs uppercase tracking-widest font-semibold text-gold">Custom Flacon Engineering</span>
             <h2 className="text-3xl sm:text-4xl font-serif text-charcoal font-medium mt-1">
@@ -274,9 +282,9 @@ export const FragranceDetail: React.FC = () => {
 
       {/* Regional Botanical Heritage */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="rounded-3xl p-8 sm:p-14 bg-charcoal text-ivory-100 border border-gold/40 shadow-luxury grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="rounded-3xl p-8 sm:p-14 bg-[#001442] text-ivory-100 border border-brand-aqua/35 shadow-luxury grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-4">
-            <span className="text-xs uppercase tracking-widest font-semibold text-gold">Tamil Nadu Terroir Story</span>
+            <span className="text-xs uppercase tracking-widest font-semibold text-brand-goldLight">Tamil Nadu Terroir Story</span>
             <h3 className="text-3xl sm:text-4xl font-serif text-ivory-100 font-medium">
               Harvested in South India, Formulated for the World
             </h3>
@@ -290,7 +298,7 @@ export const FragranceDetail: React.FC = () => {
           <div className="lg:col-span-4 text-center lg:text-right">
             <Link
               to="/contact?type=private-label"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gold text-charcoal-dark text-xs uppercase tracking-widest font-semibold hover:bg-gold-light transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand-teal text-pure text-xs uppercase tracking-widest font-semibold hover:bg-brand-emerald transition-colors"
             >
               <span>Custom Formulation Enquiry</span>
               <ArrowRight className="w-3.5 h-3.5" />

@@ -43,9 +43,6 @@ export const SEO: React.FC<SEOProps> = ({
     if (ogImg) {
       ogImg.setAttribute('content', ogImage);
     }
-
-    // Scroll to top
-    window.scrollTo(0, 0);
   }, [title, description, canonical, ogImage]);
 
   return null;

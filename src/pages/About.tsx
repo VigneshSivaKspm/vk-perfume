@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { COMPANY_INFO } from '../data/company';
 
@@ -19,20 +20,27 @@ export const About: React.FC = () => {
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-20">
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Maison Heritage • Tamil Nadu, India</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-charcoal font-normal tracking-tight">
-            Crafting Sovereign Scents at the Botanical Crossroads of India
-          </h1>
-          <p className="text-base sm:text-lg text-charcoal-light font-light leading-relaxed">
-            Founded with an uncompromising devotion to olfactory excellence, VK Perfumes stands as Tamil Nadu’s vanguard haute parfumerie house and premier private-label contract manufacturing facility.
-          </p>
+          <Reveal variant="rise" delay={0.14}>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Maison Heritage • Tamil Nadu, India</span>
+            </div>
+          </Reveal>
+          <Reveal variant="rise" delay={0.22}>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-charcoal font-normal tracking-tight">
+              Crafting Sovereign Scents at the Botanical Crossroads of India
+            </h1>
+          </Reveal>
+          <Reveal variant="rise" delay={0.3}>
+            <p className="text-base sm:text-lg text-charcoal-light font-light leading-relaxed">
+              Founded with an uncompromising devotion to olfactory excellence, VK Perfumes stands as Tamil Nadu’s vanguard haute parfumerie house and premier private-label contract manufacturing facility.
+            </p>
+          </Reveal>
         </div>
 
         {/* Master Brand Banner Visual Integration */}
-        <div className="mt-12 rounded-3xl overflow-hidden border border-champagne/60 bg-white p-8 sm:p-14 shadow-luxury flex flex-col md:flex-row items-center justify-between gap-8">
+        <Reveal variant="card-unfold" delay={0.38}>
+          <div className="mt-12 rounded-3xl overflow-hidden border border-champagne/60 bg-white p-8 sm:p-14 shadow-luxury flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-md">
             <span className="text-xs font-semibold uppercase tracking-widest text-gold">Official Corporate Identity</span>
             <h3 className="text-2xl sm:text-3xl font-serif text-charcoal font-medium mt-1">
@@ -43,7 +51,7 @@ export const About: React.FC = () => {
             </p>
           </div>
           <div className="max-w-sm sm:max-w-md">
-            <img
+            <img loading="lazy" decoding="async"
               src={COMPANY_INFO.bannerAsset}
               alt="VK Perfumes Official Banner"
               className="w-full object-contain filter drop-shadow-sm"
@@ -52,6 +60,7 @@ export const About: React.FC = () => {
             />
           </div>
         </div>
+        </Reveal>
       </section>
 
       {/* Philosophy & The Tamil Nadu Terroir */}

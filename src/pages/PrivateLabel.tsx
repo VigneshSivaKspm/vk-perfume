@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { BottlePackagingViewer } from '../components/fragrance/BottlePackagingViewer';
 
@@ -18,16 +19,22 @@ export const PrivateLabel: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-20 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>B2B OEM & Turn-Key Fragrance Atelier</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          Private Label Perfumery, Engineered to Perfection
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          From an initial olfactive moodboard to master carton dispatch, VK Perfumes serves as the discreet formulation and manufacturing partner for luxury designers, hospitality brands, and niche perfume houses.
-        </p>
+        <Reveal variant="tilt-hinge" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>B2B OEM & Turn-Key Fragrance Atelier</span>
+          </div>
+        </Reveal>
+        <Reveal variant="tilt-hinge" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            Private Label Perfumery, Engineered to Perfection
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            From an initial olfactive moodboard to master carton dispatch, VK Perfumes serves as the discreet formulation and manufacturing partner for luxury designers, hospitality brands, and niche perfume houses.
+          </p>
+        </Reveal>
       </section>
 
       {/* 4 Pillars of Private Label */}

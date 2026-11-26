@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 interface FragranceBottleProps {
   type: 'oud' | 'jasmine' | 'aquatic' | 'citrus' | 'vanilla';
@@ -14,19 +14,30 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
   interactive = true,
   className = '',
 }) => {
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [isHovered, setIsHovered] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  // Pointer tracking is kept out of React state: moving the mouse only updates
+  // motion values + one CSS variable, so the (large) SVG is not re-rendered.
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const rotateX = useSpring(tiltX, { damping: 20, stiffness: 120 });
+  const rotateY = useSpring(tiltY, { damping: 20, stiffness: 120 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!interactive) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
-    setMousePos({ x, y });
+    tiltX.set((y - 0.5) * -12);
+    tiltY.set((x - 0.5) * 16);
+    rootRef.current?.style.setProperty('--hx', String((x - 0.5) * 40));
   };
 
   const handleMouseLeave = () => {
-    setMousePos({ x: 0.5, y: 0.5 });
+    tiltX.set(0);
+    tiltY.set(0);
+    rootRef.current?.style.setProperty('--hx', '0');
     setIsHovered(false);
   };
 
@@ -37,13 +48,9 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
     xl: 'w-80 h-[460px] sm:w-96 sm:h-[540px]'
   };
 
-  // Specular highlight offset based on mouse position
-  const highlightX = (mousePos.x - 0.5) * 40;
-  const rotateX = isHovered ? (mousePos.y - 0.5) * -12 : 0;
-  const rotateY = isHovered ? (mousePos.x - 0.5) * 16 : 0;
-
   return (
     <div
+      ref={rootRef}
       className={`relative flex items-center justify-center select-none ${sizeClasses[size]} ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -52,27 +59,22 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
     >
       <motion.div
         className="w-full h-full relative flex items-center justify-center"
-        animate={{
-          rotateX,
-          rotateY,
-          y: isHovered ? -6 : [0, -8, 0],
-        }}
+        style={{ rotateX, rotateY }}
+        animate={{ y: isHovered ? -6 : [0, -8, 0] }}
         transition={{
-          rotateX: { type: 'spring', damping: 20, stiffness: 120 },
-          rotateY: { type: 'spring', damping: 20, stiffness: 120 },
-          y: isHovered ? { duration: 0.3 } : { duration: 6, repeat: Infinity, ease: 'easeInOut' }
+          y: isHovered ? { duration: 0.3 } : { duration: 6, repeat: Infinity, ease: 'easeInOut' },
         }}
       >
         {/* Ambient Ground Shadow */}
         <div
-          className="absolute -bottom-6 w-3/4 h-8 rounded-full blur-md opacity-40 transition-all duration-500"
+          className="absolute -bottom-6 w-3/4 h-8 rounded-full opacity-40 transition-transform duration-500"
           style={{
-            background: type === 'oud' ? 'radial-gradient(ellipse, #4A2708 0%, transparent 70%)'
-              : type === 'jasmine' ? 'radial-gradient(ellipse, #A3887B 0%, transparent 70%)'
-              : type === 'aquatic' ? 'radial-gradient(ellipse, #1E607D 0%, transparent 70%)'
-              : type === 'citrus' ? 'radial-gradient(ellipse, #9B7B1E 0%, transparent 70%)'
-              : 'radial-gradient(ellipse, #7A421D 0%, transparent 70%)',
-            transform: `scale(${isHovered ? 1.08 : 1}) translateX(${highlightX * 0.3}px)`,
+            background: type === 'oud' ? 'radial-gradient(ellipse, #0A3C48 0%, transparent 70%)'
+              : type === 'jasmine' ? 'radial-gradient(ellipse, #7EA099 0%, transparent 70%)'
+              : type === 'aquatic' ? 'radial-gradient(ellipse, #1E7B7D 0%, transparent 70%)'
+              : type === 'citrus' ? 'radial-gradient(ellipse, #9B991E 0%, transparent 70%)'
+              : 'radial-gradient(ellipse, #1F784E 0%, transparent 70%)',
+            transform: `scale(${isHovered ? 1.08 : 1}) translateX(calc(var(--hx, 0) * 0.3px))`,
           }}
         />
 
@@ -81,26 +83,26 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
           <svg viewBox="0 0 300 420" className="w-full h-full drop-shadow-2xl overflow-visible">
             <defs>
               <linearGradient id="oudGlassGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#2A170A" />
-                <stop offset="30%" stopColor="#693B11" />
-                <stop offset="60%" stopColor="#8C4E16" />
-                <stop offset="85%" stopColor="#4A2609" />
-                <stop offset="100%" stopColor="#1E1006" />
+                <stop offset="0%" stopColor="#0B2329" />
+                <stop offset="30%" stopColor="#135667" />
+                <stop offset="60%" stopColor="#197389" />
+                <stop offset="85%" stopColor="#0B3C48" />
+                <stop offset="100%" stopColor="#07191D" />
               </linearGradient>
               <linearGradient id="oudCapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#8C7343" />
-                <stop offset="40%" stopColor="#D4BE8D" />
-                <stop offset="70%" stopColor="#6E5528" />
-                <stop offset="100%" stopColor="#3E2E14" />
+                <stop offset="0%" stopColor="#9B9A34" />
+                <stop offset="40%" stopColor="#D8D689" />
+                <stop offset="70%" stopColor="#716F26" />
+                <stop offset="100%" stopColor="#3E3D14" />
               </linearGradient>
               <linearGradient id="oudBaseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#693B11" stopOpacity="0.8" />
-                <stop offset="60%" stopColor="#251608" stopOpacity="0.95" />
-                <stop offset="100%" stopColor="#120A03" />
+                <stop offset="0%" stopColor="#135667" stopOpacity="0.8" />
+                <stop offset="60%" stopColor="#091F24" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#030F12" />
               </linearGradient>
               <linearGradient id="goldHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FAF8F4" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#FAF8F4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#F4F9FA" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#F4F9FA" stopOpacity="0" />
               </linearGradient>
               <filter id="oudGlow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="8" result="blur" />
@@ -109,49 +111,50 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
             </defs>
 
             {/* Internal ambient aura */}
-            <rect x="75" y="115" width="150" height="250" rx="4" fill="#C88232" opacity="0.18" filter="url(#oudGlow)" />
+            <rect x="75" y="115" width="150" height="250" rx="4" fill="#1AE2BD" opacity="0.18" filter="url(#oudGlow)" />
 
             {/* Bronze Cap */}
-            <rect x="110" y="24" width="80" height="66" rx="3" fill="url(#oudCapGrad)" stroke="#B59A68" strokeWidth="1.5" />
-            <rect x="115" y="30" width="70" height="4" fill="#FAF8F4" opacity="0.4" />
-            <line x1="110" y1="56" x2="190" y2="56" stroke="#5E481D" strokeWidth="1.5" />
+            <rect x="110" y="24" width="80" height="66" rx="3" fill="url(#oudCapGrad)" stroke="#C7C556" strokeWidth="1.5" />
+            <rect x="115" y="30" width="70" height="4" fill="#F4F9FA" opacity="0.4" />
+            <line x1="110" y1="56" x2="190" y2="56" stroke="#5E5D1D" strokeWidth="1.5" />
             
             {/* Neck Collar */}
-            <rect x="122" y="90" width="56" height="18" fill="#5E481D" stroke="#B59A68" strokeWidth="1" />
-            <rect x="124" y="92" width="52" height="3" fill="#D4BE8D" opacity="0.6" />
+            <rect x="122" y="90" width="56" height="18" fill="#5E5D1D" stroke="#C7C556" strokeWidth="1" />
+            <rect x="124" y="92" width="52" height="3" fill="#D8D689" opacity="0.6" />
 
             {/* Main Architectural Bottle Body */}
-            <rect x="68" y="108" width="164" height="260" rx="6" fill="url(#oudGlassGrad)" stroke="#8C4E16" strokeWidth="2" />
+            <rect x="68" y="108" width="164" height="260" rx="6" fill="url(#oudGlassGrad)" stroke="#197389" strokeWidth="2" />
 
             {/* Inner Smoked Liquid Volume */}
-            <rect x="78" y="130" width="144" height="210" rx="4" fill="#542B0A" opacity="0.85" />
+            <rect x="78" y="130" width="144" height="210" rx="4" fill="#0C4452" opacity="0.85" />
             
             {/* Liquid Level with slight meniscus */}
-            <path d="M 80 148 Q 150 144 220 148 L 220 340 L 80 340 Z" fill="#753C0E" opacity="0.9" />
+            <path d="M 80 148 Q 150 144 220 148 L 220 340 L 80 340 Z" fill="#115F72" opacity="0.9" />
 
             {/* Heavy Crystal Glass Base (32mm) */}
-            <rect x="68" y="342" width="164" height="36" rx="4" fill="url(#oudBaseGrad)" stroke="#B59A68" strokeWidth="1" />
-            <line x1="72" y1="362" x2="228" y2="362" stroke="#B59A68" strokeWidth="0.8" opacity="0.5" />
+            <rect x="68" y="342" width="164" height="36" rx="4" fill="url(#oudBaseGrad)" stroke="#C7C556" strokeWidth="1" />
+            <line x1="72" y1="362" x2="228" y2="362" stroke="#C7C556" strokeWidth="0.8" opacity="0.5" />
 
             {/* Gold Plate Label */}
             <g transform="translate(95, 210)">
-              <rect x="0" y="0" width="110" height="68" rx="2" fill="#1C1006" stroke="#B59A68" strokeWidth="1.2" />
-              <rect x="4" y="4" width="102" height="60" rx="1" fill="none" stroke="#D4BE8D" strokeWidth="0.6" strokeDasharray="2,2" />
-              <text x="55" y="22" fill="#D4BE8D" fontSize="8" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="3">VK PERFUMES</text>
-              <line x1="30" y1="28" x2="80" y2="28" stroke="#B59A68" strokeWidth="0.75" />
-              <text x="55" y="42" fill="#FAF8F4" fontSize="11" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.5">ROYAL OUD</text>
-              <text x="55" y="55" fill="#D4BE8D" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EXTRAIT DE PARFUM</text>
+              <rect x="0" y="0" width="110" height="68" rx="2" fill="#07171B" stroke="#C7C556" strokeWidth="1.2" />
+              <rect x="4" y="4" width="102" height="60" rx="1" fill="none" stroke="#D8D689" strokeWidth="0.6" strokeDasharray="2,2" />
+              <text x="55" y="22" fill="#D8D689" fontSize="8" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="3">VK PERFUMES</text>
+              <line x1="30" y1="28" x2="80" y2="28" stroke="#C7C556" strokeWidth="0.75" />
+              <text x="55" y="42" fill="#F4F9FA" fontSize="11" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.5">ROYAL OUD</text>
+              <text x="55" y="55" fill="#D8D689" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EXTRAIT DE PARFUM</text>
             </g>
 
             {/* Dynamic Glass Specular Reflection Highlight */}
             <path
-              d={`M ${90 + highlightX * 0.4} 112 L ${104 + highlightX * 0.4} 112 L ${84 + highlightX * 0.4} 360 L ${74 + highlightX * 0.4} 360 Z`}
+              d={`M 90 112 L 104 112 L 84 360 L 74 360 Z`}
+              style={{ transform: 'translateX(calc(var(--hx, 0) * 0.4px))' }}
               fill="url(#goldHighlight)"
               opacity="0.5"
             />
             {/* Edge highlights */}
-            <line x1="72" y1="110" x2="72" y2="370" stroke="#FAF8F4" strokeWidth="1" opacity="0.35" />
-            <line x1="228" y1="110" x2="228" y2="370" stroke="#D4BE8D" strokeWidth="0.8" opacity="0.35" />
+            <line x1="72" y1="110" x2="72" y2="370" stroke="#F4F9FA" strokeWidth="1" opacity="0.35" />
+            <line x1="228" y1="110" x2="228" y2="370" stroke="#D8D689" strokeWidth="0.8" opacity="0.35" />
           </svg>
         )}
 
@@ -161,23 +164,23 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
             <defs>
               <linearGradient id="jasmineGlass" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.95" />
-                <stop offset="40%" stopColor="#F9F4EE" stopOpacity="0.9" />
-                <stop offset="80%" stopColor="#F2E6DC" stopOpacity="0.85" />
-                <stop offset="100%" stopColor="#E5D3C5" stopOpacity="0.95" />
+                <stop offset="40%" stopColor="#EFF8F6" stopOpacity="0.9" />
+                <stop offset="80%" stopColor="#DEF0ED" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#C7E3DD" stopOpacity="0.95" />
               </linearGradient>
               <linearGradient id="roseGoldCap" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#E8B49B" />
-                <stop offset="35%" stopColor="#F7D8CA" />
-                <stop offset="70%" stopColor="#C9886D" />
-                <stop offset="100%" stopColor="#8C533D" />
+                <stop offset="0%" stopColor="#A1E2D5" />
+                <stop offset="35%" stopColor="#CDF4EC" />
+                <stop offset="70%" stopColor="#74C2B2" />
+                <stop offset="100%" stopColor="#438679" />
               </linearGradient>
               <linearGradient id="pearlShine" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
                 <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
               </linearGradient>
               <radialGradient id="jasmineAura" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#FFF0E6" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#FAF8F4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#E8FDF9" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#F4FAF9" stopOpacity="0" />
               </radialGradient>
             </defs>
 
@@ -185,11 +188,11 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
             <circle cx="150" cy="240" r="110" fill="url(#jasmineAura)" />
 
             {/* Rose Gold Filigree Cap - Spherical & Sculpted */}
-            <circle cx="150" cy="52" r="34" fill="url(#roseGoldCap)" stroke="#C9886D" strokeWidth="1" />
+            <circle cx="150" cy="52" r="34" fill="url(#roseGoldCap)" stroke="#74C2B2" strokeWidth="1" />
             <circle cx="140" cy="44" r="14" fill="#FFFFFF" opacity="0.4" />
             {/* Filigree Petal Details on Cap */}
-            <path d="M 132 52 C 142 42 158 42 168 52 C 158 62 142 62 132 52 Z" fill="none" stroke="#FAF8F4" strokeWidth="1" opacity="0.6" />
-            <path d="M 150 34 C 150 44 150 60 150 70" stroke="#FAF8F4" strokeWidth="1" opacity="0.5" />
+            <path d="M 132 52 C 142 42 158 42 168 52 C 158 62 142 62 132 52 Z" fill="none" stroke="#F4FAF9" strokeWidth="1" opacity="0.6" />
+            <path d="M 150 34 C 150 44 150 60 150 70" stroke="#F4FAF9" strokeWidth="1" opacity="0.5" />
 
             {/* Collar */}
             <rect x="135" y="86" width="30" height="16" rx="2" fill="url(#roseGoldCap)" />
@@ -202,7 +205,7 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
                  C 195 372, 230 320, 230 240 
                  C 230 170, 190 120, 165 102 Z"
               fill="url(#jasmineGlass)"
-              stroke="#E8B49B"
+              stroke="#A1E2D5"
               strokeWidth="1.5"
             />
 
@@ -213,29 +216,30 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
                  C 82 312, 112 356, 150 356 
                  C 188 356, 218 312, 218 245 
                  C 218 186, 184 142, 164 128 Z"
-              fill="#FDF8F3"
+              fill="#F4FCFB"
               opacity="0.75"
             />
 
             {/* Embossed Floral Petal Lines */}
-            <path d="M 150 160 C 130 210, 115 270, 120 320" stroke="#E8B49B" strokeWidth="0.8" fill="none" opacity="0.4" />
-            <path d="M 150 160 C 170 210, 185 270, 180 320" stroke="#E8B49B" strokeWidth="0.8" fill="none" opacity="0.4" />
+            <path d="M 150 160 C 130 210, 115 270, 120 320" stroke="#A1E2D5" strokeWidth="0.8" fill="none" opacity="0.4" />
+            <path d="M 150 160 C 170 210, 185 270, 180 320" stroke="#A1E2D5" strokeWidth="0.8" fill="none" opacity="0.4" />
 
             {/* Delicate Silk Label */}
             <g transform="translate(98, 225)">
-              <rect x="0" y="0" width="104" height="60" rx="30" fill="#FFFFFF" stroke="#E8B49B" strokeWidth="0.8" />
-              <text x="52" y="20" fill="#C9886D" fontSize="7.5" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="2.5">VK PARFUMS</text>
-              <line x1="32" y1="26" x2="72" y2="26" stroke="#E8B49B" strokeWidth="0.6" />
-              <text x="52" y="38" fill="#3D3028" fontSize="10" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.2">MADURAI</text>
-              <text x="52" y="49" fill="#8C533D" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="1.8">JASMINE LUMIÈRE</text>
+              <rect x="0" y="0" width="104" height="60" rx="30" fill="#FFFFFF" stroke="#A1E2D5" strokeWidth="0.8" />
+              <text x="52" y="20" fill="#01706C" fontSize="7.5" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="2.5">VK PARFUMS</text>
+              <line x1="32" y1="26" x2="72" y2="26" stroke="#A1E2D5" strokeWidth="0.6" />
+              <text x="52" y="38" fill="#2A3B38" fontSize="10" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.2">MADURAI</text>
+              <text x="52" y="49" fill="#438679" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="1.8">JASMINE LUMIÈRE</text>
             </g>
 
             {/* Dynamic Pearl Reflection */}
             <path
-              d={`M ${95 + highlightX * 0.3} 125 
-                 C ${80 + highlightX * 0.3} 180, ${82 + highlightX * 0.3} 280, ${100 + highlightX * 0.3} 340 
-                 L ${110 + highlightX * 0.3} 338 
-                 C ${94 + highlightX * 0.3} 280, ${92 + highlightX * 0.3} 180, ${105 + highlightX * 0.3} 125 Z`}
+              d={`M 95 125 
+                 C 80 180, 82 280, 100 340 
+                 L 110 338 
+                 C 94 280, 92 180, 105 125 Z`}
+              style={{ transform: 'translateX(calc(var(--hx, 0) * 0.3px))' }}
               fill="url(#pearlShine)"
               opacity="0.6"
             />
@@ -247,16 +251,16 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
           <svg viewBox="0 0 300 420" className="w-full h-full drop-shadow-2xl overflow-visible">
             <defs>
               <linearGradient id="aquaticGlass" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#0B3C5D" />
-                <stop offset="35%" stopColor="#1E607D" />
-                <stop offset="70%" stopColor="#328CC1" />
-                <stop offset="100%" stopColor="#D9F0F7" />
+                <stop offset="0%" stopColor="#0B5C5D" />
+                <stop offset="35%" stopColor="#1E7B7D" />
+                <stop offset="70%" stopColor="#32BFC1" />
+                <stop offset="100%" stopColor="#D9F7F7" />
               </linearGradient>
               <linearGradient id="silverCap" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#8C9CA6" />
+                <stop offset="0%" stopColor="#8CA6A6" />
                 <stop offset="35%" stopColor="#FFFFFF" />
-                <stop offset="65%" stopColor="#B0C2CE" />
-                <stop offset="100%" stopColor="#5B6D7A" />
+                <stop offset="65%" stopColor="#B0CECE" />
+                <stop offset="100%" stopColor="#5B797A" />
               </linearGradient>
               <linearGradient id="waveReflect" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
@@ -265,14 +269,14 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
             </defs>
 
             {/* Modern Silver Knurled Cap */}
-            <rect x="115" y="28" width="70" height="58" rx="2" fill="url(#silverCap)" stroke="#7A8F9E" strokeWidth="1" />
-            <rect x="115" y="38" width="70" height="2" fill="#5B6D7A" />
-            <rect x="115" y="44" width="70" height="2" fill="#5B6D7A" />
-            <rect x="115" y="50" width="70" height="2" fill="#5B6D7A" />
+            <rect x="115" y="28" width="70" height="58" rx="2" fill="url(#silverCap)" stroke="#7A9D9E" strokeWidth="1" />
+            <rect x="115" y="38" width="70" height="2" fill="#5B797A" />
+            <rect x="115" y="44" width="70" height="2" fill="#5B797A" />
+            <rect x="115" y="50" width="70" height="2" fill="#5B797A" />
             <rect x="122" y="32" width="20" height="50" fill="#FFFFFF" opacity="0.3" />
 
             {/* Neck */}
-            <rect x="128" y="86" width="44" height="16" fill="#A8BCC9" stroke="#7A8F9E" strokeWidth="0.8" />
+            <rect x="128" y="86" width="44" height="16" fill="#A8C8C9" stroke="#7A9D9E" strokeWidth="0.8" />
 
             {/* Wave-Inspired Sculpted Asymmetric Bottle */}
             <path
@@ -283,7 +287,7 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
                  C 242 270, 236 170, 222 130 
                  L 175 102 Z"
               fill="url(#aquaticGlass)"
-              stroke="#48A9C5"
+              stroke="#48C3C5"
               strokeWidth="2"
             />
 
@@ -295,30 +299,31 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
                  L 222 335 
                  C 230 265, 226 185, 215 150 
                  L 175 125 Z"
-              fill="#185674"
+              fill="#187274"
               opacity="0.8"
             />
 
             {/* Diagonal Wave Facet Lines */}
-            <path d="M 72 135 L 150 350" stroke="#76C4DB" strokeWidth="1.2" opacity="0.5" />
-            <path d="M 125 102 L 232 350" stroke="#76C4DB" strokeWidth="1.2" opacity="0.4" />
+            <path d="M 72 135 L 150 350" stroke="#76D9DB" strokeWidth="1.2" opacity="0.5" />
+            <path d="M 125 102 L 232 350" stroke="#76D9DB" strokeWidth="1.2" opacity="0.4" />
 
             {/* Heavy Ice Crystal Base */}
-            <rect x="68" y="348" width="164" height="28" rx="2" fill="#D9F0F7" opacity="0.9" stroke="#48A9C5" strokeWidth="1" />
+            <rect x="68" y="348" width="164" height="28" rx="2" fill="#D9F7F7" opacity="0.9" stroke="#48C3C5" strokeWidth="1" />
             <line x1="72" y1="362" x2="228" y2="362" stroke="#FFFFFF" strokeWidth="1.5" />
 
             {/* Minimalist Silver Plaque */}
             <g transform="translate(95, 210)">
-              <rect x="0" y="0" width="110" height="62" rx="1" fill="#0C2D3D" stroke="#76C4DB" strokeWidth="1" />
-              <text x="55" y="20" fill="#76C4DB" fontSize="7.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="3">VK COROMANDEL</text>
-              <line x1="30" y1="26" x2="80" y2="26" stroke="#48A9C5" strokeWidth="0.8" />
+              <rect x="0" y="0" width="110" height="62" rx="1" fill="#0C3C3D" stroke="#76D9DB" strokeWidth="1" />
+              <text x="55" y="20" fill="#76D9DB" fontSize="7.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="3">VK COROMANDEL</text>
+              <line x1="30" y1="26" x2="80" y2="26" stroke="#48C3C5" strokeWidth="0.8" />
               <text x="55" y="40" fill="#FFFFFF" fontSize="10.5" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.5">OCEANIC MIST</text>
-              <text x="55" y="52" fill="#A8DCE8" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EAU DE PARFUM</text>
+              <text x="55" y="52" fill="#A8E7E8" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EAU DE PARFUM</text>
             </g>
 
             {/* Dynamic Water Surface Specular Reflection */}
             <path
-              d={`M ${88 + highlightX * 0.4} 140 L ${100 + highlightX * 0.4} 140 L ${82 + highlightX * 0.4} 345 L ${72 + highlightX * 0.4} 345 Z`}
+              d={`M 88 140 L 100 140 L 82 345 L 72 345 Z`}
+              style={{ transform: 'translateX(calc(var(--hx, 0) * 0.4px))' }}
               fill="url(#waveReflect)"
               opacity="0.6"
             />
@@ -330,15 +335,15 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
           <svg viewBox="0 0 300 420" className="w-full h-full drop-shadow-2xl overflow-visible">
             <defs>
               <linearGradient id="citrusJuice" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFF9E6" />
-                <stop offset="35%" stopColor="#F5DF76" />
-                <stop offset="75%" stopColor="#E5B824" />
-                <stop offset="100%" stopColor="#B3890F" />
+                <stop offset="0%" stopColor="#FFFFE6" />
+                <stop offset="35%" stopColor="#F5F376" />
+                <stop offset="75%" stopColor="#E5E224" />
+                <stop offset="100%" stopColor="#B3B00F" />
               </linearGradient>
               <linearGradient id="goldCapFaceted" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FFF2B2" />
-                <stop offset="50%" stopColor="#D4AF37" />
-                <stop offset="100%" stopColor="#80620C" />
+                <stop offset="0%" stopColor="#FFFEB2" />
+                <stop offset="50%" stopColor="#D4D137" />
+                <stop offset="100%" stopColor="#807E0C" />
               </linearGradient>
               <linearGradient id="prismLight" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
@@ -347,44 +352,45 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
             </defs>
 
             {/* Gold Geometric Faceted Cap */}
-            <polygon points="120,24 180,24 195,45 180,84 120,84 105,45" fill="url(#goldCapFaceted)" stroke="#B3890F" strokeWidth="1.2" />
-            <polygon points="135,26 165,26 175,44 165,82 135,82 125,44" fill="#FAF8F4" opacity="0.3" />
+            <polygon points="120,24 180,24 195,45 180,84 120,84 105,45" fill="url(#goldCapFaceted)" stroke="#B3B00F" strokeWidth="1.2" />
+            <polygon points="135,26 165,26 175,44 165,82 135,82 125,44" fill="#FAFAF4" opacity="0.3" />
 
             {/* Neck */}
-            <rect x="130" y="84" width="40" height="18" fill="#80620C" stroke="#D4AF37" strokeWidth="1" />
+            <rect x="130" y="84" width="40" height="18" fill="#807E0C" stroke="#D4D137" strokeWidth="1" />
 
             {/* Octagonal Diamond Prism Bottle Body */}
             <polygon
               points="110,102 190,102 245,155 245,325 190,375 110,375 55,325 55,155"
               fill="url(#citrusJuice)"
-              stroke="#D4AF37"
+              stroke="#D4D137"
               strokeWidth="2"
             />
 
             {/* Internal Diamond Facet Geometry */}
             <polygon points="110,102 150,155 190,102" fill="#FFFFFF" opacity="0.4" />
-            <polygon points="55,155 150,155 110,102" fill="#FAF4D0" opacity="0.3" />
-            <polygon points="245,155 150,155 190,102" fill="#D4AF37" opacity="0.25" />
-            <polygon points="55,155 150,155 55,325" fill="#C49B17" opacity="0.2" />
-            <polygon points="245,155 150,155 245,325" fill="#FAF4D0" opacity="0.3" />
-            <polygon points="55,325 150,325 110,375" fill="#8A6707" opacity="0.4" />
-            <polygon points="245,325 150,325 190,375" fill="#8A6707" opacity="0.4" />
+            <polygon points="55,155 150,155 110,102" fill="#FAF9D0" opacity="0.3" />
+            <polygon points="245,155 150,155 190,102" fill="#D4D137" opacity="0.25" />
+            <polygon points="55,155 150,155 55,325" fill="#C4C117" opacity="0.2" />
+            <polygon points="245,155 150,155 245,325" fill="#FAF9D0" opacity="0.3" />
+            <polygon points="55,325 150,325 110,375" fill="#8A8807" opacity="0.4" />
+            <polygon points="245,325 150,325 190,375" fill="#8A8807" opacity="0.4" />
 
             {/* Crisp Central Plaque */}
             <g transform="translate(85, 210)">
-              <polygon points="15,0 115,0 130,28 115,58 15,58 0,28" fill="#FAF8F4" stroke="#D4AF37" strokeWidth="1.2" />
-              <text x="65" y="18" fill="#80620C" fontSize="7" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="3">VK COONOOR</text>
-              <line x1="40" y1="24" x2="90" y2="24" stroke="#D4AF37" strokeWidth="0.8" />
-              <text x="65" y="38" fill="#25231F" fontSize="10" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.2">CITRUS SOLEIL</text>
-              <text x="65" y="49" fill="#B3890F" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EAU DE PARFUM</text>
+              <polygon points="15,0 115,0 130,28 115,58 15,58 0,28" fill="#FAFAF4" stroke="#D4D137" strokeWidth="1.2" />
+              <text x="65" y="18" fill="#807E0C" fontSize="7" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="3">VK COONOOR</text>
+              <line x1="40" y1="24" x2="90" y2="24" stroke="#D4D137" strokeWidth="0.8" />
+              <text x="65" y="38" fill="#013E43" fontSize="10" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.2">CITRUS SOLEIL</text>
+              <text x="65" y="49" fill="#B3B00F" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EAU DE PARFUM</text>
             </g>
 
             {/* Stepped Optical Base */}
-            <polygon points="95,375 205,375 220,388 80,388" fill="#FFF2B2" stroke="#D4AF37" strokeWidth="1" />
+            <polygon points="95,375 205,375 220,388 80,388" fill="#FFFEB2" stroke="#D4D137" strokeWidth="1" />
 
             {/* Dynamic Crystal Facet Flare */}
             <path
-              d={`M ${75 + highlightX * 0.4} 160 L ${90 + highlightX * 0.4} 160 L ${75 + highlightX * 0.4} 330 L ${60 + highlightX * 0.4} 330 Z`}
+              d={`M 75 160 L 90 160 L 75 330 L 60 330 Z`}
+              style={{ transform: 'translateX(calc(var(--hx, 0) * 0.4px))' }}
               fill="url(#prismLight)"
               opacity="0.65"
             />
@@ -396,26 +402,26 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
           <svg viewBox="0 0 300 420" className="w-full h-full drop-shadow-2xl overflow-visible">
             <defs>
               <linearGradient id="caramelJuice" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#4A250E" />
-                <stop offset="30%" stopColor="#854D27" />
-                <stop offset="65%" stopColor="#C68B59" />
-                <stop offset="90%" stopColor="#E2B180" />
-                <stop offset="100%" stopColor="#4A250E" />
+                <stop offset="0%" stopColor="#10492E" />
+                <stop offset="30%" stopColor="#298359" />
+                <stop offset="65%" stopColor="#5CC393" />
+                <stop offset="90%" stopColor="#82E0B4" />
+                <stop offset="100%" stopColor="#10492E" />
               </linearGradient>
               <linearGradient id="ribbedGoldCap" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#8C6F3E" />
-                <stop offset="25%" stopColor="#E9D9BF" />
-                <stop offset="50%" stopColor="#B59A68" />
-                <stop offset="75%" stopColor="#FAF8F4" />
-                <stop offset="100%" stopColor="#695126" />
+                <stop offset="0%" stopColor="#989633" />
+                <stop offset="25%" stopColor="#EAE9BE" />
+                <stop offset="50%" stopColor="#C7C556" />
+                <stop offset="75%" stopColor="#F4FAF7" />
+                <stop offset="100%" stopColor="#6B6A24" />
               </linearGradient>
               <linearGradient id="amberGlow" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.75" />
                 <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
               </linearGradient>
               <radialGradient id="vanillaAura" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#E2B180" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#FAF8F4" stopOpacity="0" />
+                <stop offset="0%" stopColor="#82E0B4" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#F4FAF7" stopOpacity="0" />
               </radialGradient>
             </defs>
 
@@ -423,16 +429,16 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
             <circle cx="150" cy="240" r="120" fill="url(#vanillaAura)" />
 
             {/* Fluted Ribbed Champagne-Gold Cap */}
-            <path d="M 120 28 Q 150 20 180 28 L 184 84 L 116 84 Z" fill="url(#ribbedGoldCap)" stroke="#8C6F3E" strokeWidth="1.2" />
+            <path d="M 120 28 Q 150 20 180 28 L 184 84 L 116 84 Z" fill="url(#ribbedGoldCap)" stroke="#989633" strokeWidth="1.2" />
             {/* Cap Ribs */}
-            <line x1="130" y1="26" x2="128" y2="84" stroke="#695126" strokeWidth="1" />
-            <line x1="140" y1="24" x2="139" y2="84" stroke="#695126" strokeWidth="1" />
-            <line x1="150" y1="23" x2="150" y2="84" stroke="#FAF8F4" strokeWidth="1.2" />
-            <line x1="160" y1="24" x2="161" y2="84" stroke="#695126" strokeWidth="1" />
-            <line x1="170" y1="26" x2="172" y2="84" stroke="#695126" strokeWidth="1" />
+            <line x1="130" y1="26" x2="128" y2="84" stroke="#6B6A24" strokeWidth="1" />
+            <line x1="140" y1="24" x2="139" y2="84" stroke="#6B6A24" strokeWidth="1" />
+            <line x1="150" y1="23" x2="150" y2="84" stroke="#F4FAF7" strokeWidth="1.2" />
+            <line x1="160" y1="24" x2="161" y2="84" stroke="#6B6A24" strokeWidth="1" />
+            <line x1="170" y1="26" x2="172" y2="84" stroke="#6B6A24" strokeWidth="1" />
 
             {/* Neck */}
-            <rect x="126" y="84" width="48" height="18" fill="#8C6F3E" />
+            <rect x="126" y="84" width="48" height="18" fill="#989633" />
 
             {/* Sensual Curving Amphora Flacon Body */}
             <path
@@ -443,7 +449,7 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
                  C 190 320, 220 285, 228 235 
                  C 238 170, 210 120, 174 102 Z"
               fill="url(#caramelJuice)"
-              stroke="#C68B59"
+              stroke="#5CC393"
               strokeWidth="2"
             />
 
@@ -455,7 +461,7 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
                  L 182 335 
                  C 182 310, 208 280, 216 235 
                  C 225 180, 204 135, 172 120 Z"
-              fill="#96562A"
+              fill="#2D9363"
               opacity="0.8"
             />
 
@@ -464,27 +470,28 @@ export const FragranceBottle: React.FC<FragranceBottleProps> = ({
               d="M 110 345 
                  C 110 365, 125 382, 150 382 
                  C 175 382, 190 365, 190 345 Z"
-              fill="#E9D9BF"
-              stroke="#B59A68"
+              fill="#EAE9BE"
+              stroke="#C7C556"
               strokeWidth="1.2"
             />
 
             {/* Cream Textured Linen Label */}
             <g transform="translate(95, 205)">
-              <rect x="0" y="0" width="110" height="66" rx="4" fill="#FAF6F0" stroke="#C68B59" strokeWidth="1" />
-              <rect x="3" y="3" width="104" height="60" rx="2" fill="none" stroke="#E2B180" strokeWidth="0.5" />
-              <text x="55" y="20" fill="#854D27" fontSize="7.5" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="2.5">VK HAUTE VINTAGE</text>
-              <line x1="32" y1="26" x2="78" y2="26" stroke="#C68B59" strokeWidth="0.75" />
-              <text x="55" y="40" fill="#3B1F0D" fontSize="10.5" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.2">VELOURS VANILLA</text>
-              <text x="55" y="52" fill="#854D27" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EXTRAIT DE PARFUM</text>
+              <rect x="0" y="0" width="110" height="66" rx="4" fill="#F0FAF5" stroke="#5CC393" strokeWidth="1" />
+              <rect x="3" y="3" width="104" height="60" rx="2" fill="none" stroke="#82E0B4" strokeWidth="0.5" />
+              <text x="55" y="20" fill="#298359" fontSize="7.5" fontFamily="'Cormorant Garamond', serif" textAnchor="middle" letterSpacing="2.5">VK HAUTE VINTAGE</text>
+              <line x1="32" y1="26" x2="78" y2="26" stroke="#5CC393" strokeWidth="0.75" />
+              <text x="55" y="40" fill="#0E3A25" fontSize="10.5" fontWeight="600" fontFamily="'Bodoni Moda', serif" textAnchor="middle" letterSpacing="1.2">VELOURS VANILLA</text>
+              <text x="55" y="52" fill="#298359" fontSize="6.5" fontFamily="'Plus Jakarta Sans', sans-serif" textAnchor="middle" letterSpacing="2">EXTRAIT DE PARFUM</text>
             </g>
 
             {/* Dynamic Warm Caramel Reflection */}
             <path
-              d={`M ${92 + highlightX * 0.35} 120 
-                 C ${76 + highlightX * 0.35} 170, ${82 + highlightX * 0.35} 250, ${104 + highlightX * 0.35} 320 
-                 L ${116 + highlightX * 0.35} 318 
-                 C ${96 + highlightX * 0.35} 250, ${90 + highlightX * 0.35} 170, ${104 + highlightX * 0.35} 120 Z`}
+              d={`M 92 120 
+                 C 76 170, 82 250, 104 320 
+                 L 116 318 
+                 C 96 250, 90 170, 104 120 Z`}
+              style={{ transform: 'translateX(calc(var(--hx, 0) * 0.35px))' }}
               fill="url(#amberGlow)"
               opacity="0.65"
             />

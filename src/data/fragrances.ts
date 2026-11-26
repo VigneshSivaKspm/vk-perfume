@@ -13,26 +13,26 @@ export const FRAGRANCES: Fragrance[] = [
     visualType: 'oud',
     designDirection: 'Royal, mysterious, powerful, sophisticated.',
     bottle: {
-      silhouette: 'Tall architectural smoked amber monolithic flacon',
-      glass: 'Graduated deep walnut brown to translucent obsidian black crystal',
-      cap: 'Chiseled metallic bronze crown with subtle brushed satin bevels',
+      silhouette: 'Tall architectural deep-teal monolithic flacon',
+      glass: 'Graduated deep ocean teal to translucent midnight navy crystal',
+      cap: 'Chiseled metallic crown-gold cap with subtle brushed satin bevels',
       detailing: 'Precision micro-etched gold monogram lineaments & recessed label niche',
-      base: 'Heavy 32mm solid optical crystal base reflecting warm amber refractions',
+      base: 'Heavy 32mm solid optical crystal base reflecting deep teal refractions',
       summary: 'An imposing sculptural presence inspired by royal palatial architecture, balancing ancient smoky depth with razor-sharp modern symmetry.'
     },
     environment: {
-      lighting: 'Warm dusk desert illumination with sharp directional bronze rim reflections',
+      lighting: 'Warm dusk desert illumination with sharp directional crown-gold rim reflections',
       textures: 'Aged agarwood grain, polished black obsidian, and hand-troweled terracotta sandstone',
-      atmosphere: 'Suspended micro-incense wisps, drifting golden dust particles, and deep amber glow'
+      atmosphere: 'Suspended micro-incense wisps, drifting golden dust particles, and deep teal glow'
     },
     colors: {
-      primary: '#693B11',
-      secondary: '#251A10',
-      accent: '#B59A68',
-      glow: 'rgba(181, 154, 104, 0.35)',
-      bgLight: '#FAF4EB',
-      pillBg: '#F3E5D4',
-      border: 'rgba(105, 59, 17, 0.25)'
+      primary: '#013E43',
+      secondary: '#001442',
+      accent: '#B9B52A',
+      glow: 'rgba(185, 181, 42, 0.35)',
+      bgLight: '#F2F8F6',
+      pillBg: '#DCEBE6',
+      border: 'rgba(1, 62, 67, 0.25)'
     },
     notes: {
       top: ['Wild Saffron Thread', 'Smoked Bergamot Rind', 'Pimento Berry'],
@@ -76,8 +76,8 @@ export const FRAGRANCES: Fragrance[] = [
     bottle: {
       silhouette: 'Soft sculpted teardrop flacon with undulating feminine contours',
       glass: 'Frosted pearl-white opaline glass with subtle translucent pearlescence',
-      cap: 'Polished rose-gold metallic sphere with laser-engraved floral arabesque filigree',
-      detailing: 'Subtle embossed petal contours and rose-gilded calligraphy',
+      cap: 'Polished mint-gilded metallic sphere with laser-engraved floral arabesque filigree',
+      detailing: 'Subtle embossed petal contours and mint-gilded calligraphy',
       base: 'Gently curved, water-clear crystal plinth with radiant white highlights',
       summary: 'A luminous, ethereal silhouette echoing the delicate form of an unfurling dawn jasmine blossom, radiating soft morning light.'
     },
@@ -87,13 +87,13 @@ export const FRAGRANCES: Fragrance[] = [
       atmosphere: 'Suspended morning dew droplets, soft-focus glowing bokeh, and drifting white petals'
     },
     colors: {
-      primary: '#9C7A68',
-      secondary: '#4A3B32',
-      accent: '#D4A373',
-      glow: 'rgba(212, 163, 115, 0.3)',
-      bgLight: '#FBF8F5',
-      pillBg: '#F3EBE3',
-      border: 'rgba(212, 163, 115, 0.25)'
+      primary: '#0F8F7A',
+      secondary: '#013E43',
+      accent: '#1AE2BD',
+      glow: 'rgba(26, 226, 189, 0.3)',
+      bgLight: '#F3FBF8',
+      pillBg: '#DDF5EE',
+      border: 'rgba(26, 226, 189, 0.28)'
     },
     notes: {
       top: ['Morning Green Sap', 'Mandarin Blossom', 'Crisp White Nectarine'],
@@ -136,7 +136,7 @@ export const FRAGRANCES: Fragrance[] = [
     designDirection: 'Refreshing, modern, serene, ocean-inspired.',
     bottle: {
       silhouette: 'Dynamic wave-inspired sculptural flacon with asymmetric crystal facets',
-      glass: 'Graduated cerulean blue fading into crystalline optical ocean transparency',
+      glass: 'Graduated deep teal fading into crystalline optical ocean transparency',
       cap: 'Mirror-polished nautical silver cylindrical cap with knurled grip detailing',
       detailing: 'Clean silver-leaf foil geometric typography and marine latitude coordinates',
       base: 'Heavy monolithic clear base evoking sunlight passing through deep coastal reefs',
@@ -148,13 +148,13 @@ export const FRAGRANCES: Fragrance[] = [
       atmosphere: 'Suspended microscopic sea spray droplets, cool coastal breeze, and crystalline cyan highlights'
     },
     colors: {
-      primary: '#1E607D',
-      secondary: '#0C2D3D',
-      accent: '#48A9C5',
-      glow: 'rgba(72, 169, 197, 0.35)',
-      bgLight: '#F2F8FA',
-      pillBg: '#E0F0F5',
-      border: 'rgba(72, 169, 197, 0.28)'
+      primary: '#01706C',
+      secondary: '#00303F',
+      accent: '#2CEEEC',
+      glow: 'rgba(44, 238, 236, 0.35)',
+      bgLight: '#F2FAFA',
+      pillBg: '#D8F3F3',
+      border: 'rgba(44, 238, 236, 0.3)'
     },
     notes: {
       top: ['Coromandel Sea Salt Mist', 'Crushed Juniper Berries', 'Italian Calamansi'],
@@ -197,8 +197,8 @@ export const FRAGRANCES: Fragrance[] = [
     designDirection: 'Bright, energetic, contemporary, uplifting.',
     bottle: {
       silhouette: 'Precision octagonal prism flacon with hand-cut diamond-faceted edges',
-      glass: 'Ultra-clear low-iron optical crystal displaying effervescent champagne-citron liquid',
-      cap: 'Satin champagne-gold faceted cap mirroring the geometry of the bottle shoulders',
+      glass: 'Ultra-clear low-iron optical crystal displaying effervescent lime-gold citron liquid',
+      cap: 'Satin crown-gold faceted cap mirroring the geometry of the bottle shoulders',
       detailing: 'Fine gold border debossed plaque and sunburst laser engraving on bottle crown',
       base: 'Precision-cut stepped bevel base that casts prism rainbow refractions on any surface',
       summary: 'A modern geometric tour-de-force designed to refract ambient daylight like an Italian cut diamond, radiating infectious vitality.'
@@ -209,13 +209,13 @@ export const FRAGRANCES: Fragrance[] = [
       atmosphere: 'Microscopic suspended citrus essential oil vapors and sparkling golden prism flares'
     },
     colors: {
-      primary: '#9B7B1E',
-      secondary: '#4A3907',
-      accent: '#D4AF37',
-      glow: 'rgba(212, 175, 55, 0.35)',
-      bgLight: '#FCFAF2',
-      pillBg: '#F7F1D8',
-      border: 'rgba(212, 175, 55, 0.3)'
+      primary: '#757014',
+      secondary: '#3A3708',
+      accent: '#B9B52A',
+      glow: 'rgba(185, 181, 42, 0.35)',
+      bgLight: '#FAFBF0',
+      pillBg: '#EEF0C8',
+      border: 'rgba(185, 181, 42, 0.3)'
     },
     notes: {
       top: ['Cold-pressed Bergamot', 'Tamil Nadu Green Lime Zest', 'Sunlit Mandora', 'Pink Grapefruit'],
@@ -258,10 +258,10 @@ export const FRAGRANCES: Fragrance[] = [
     designDirection: 'Warm, indulgent, sensual, comforting.',
     bottle: {
       silhouette: 'Sensual curved amphora flacon with ergonomic sweeping hourglass contours',
-      glass: 'Heavy weight crystal revealing deep golden caramel and honeyed liquid inside',
-      cap: 'Warm champagne-gold fluted crown with magnetic haptic closure',
-      detailing: 'Hand-applied cream textured linen label with gold hot-stamped VK crest',
-      base: 'Generous 35mm thick rounded teardrop plinth with warm amber internal caustics',
+      glass: 'Heavy weight crystal revealing deep emerald and jade liquid inside',
+      cap: 'Crown-gold fluted crown with magnetic haptic closure',
+      detailing: 'Hand-applied pearl-mint textured linen label with gold hot-stamped VK crest',
+      base: 'Generous 35mm thick rounded teardrop plinth with emerald internal caustics',
       summary: 'A voluptuous, tactile bottle that feels like warm silk in the palm, celebrating the opulent warmth of golden South Indian vanilla pods.'
     },
     environment: {
@@ -270,13 +270,13 @@ export const FRAGRANCES: Fragrance[] = [
       atmosphere: 'Warm confectionery vapors, soft golden halo gradients, and gentle drifting amber sparks'
     },
     colors: {
-      primary: '#854D27',
-      secondary: '#3B1F0D',
-      accent: '#C68B59',
-      glow: 'rgba(198, 139, 89, 0.35)',
-      bgLight: '#FAF5F0',
-      pillBg: '#F3E7DC',
-      border: 'rgba(198, 139, 89, 0.3)'
+      primary: '#016840',
+      secondary: '#013E43',
+      accent: '#02A262',
+      glow: 'rgba(2, 162, 98, 0.35)',
+      bgLight: '#F2FAF6',
+      pillBg: '#D9F0E4',
+      border: 'rgba(2, 162, 98, 0.3)'
     },
     notes: {
       top: ['Toasted Almond Milk', 'Cardamom Pod Infusion', 'Golden Honey Drizzle'],

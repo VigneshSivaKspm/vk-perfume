@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { COMPANY_INFO } from '../data/company';
 
 export const Privacy: React.FC = () => {
@@ -24,7 +25,8 @@ export const Privacy: React.FC = () => {
           <span>Return to Homepage</span>
         </Link>
 
-        <div className="bg-white rounded-3xl p-8 sm:p-14 border border-champagne/80 shadow-luxury space-y-8">
+        <Reveal variant="drop-clean" delay={0.16}>
+          <div className="bg-white rounded-3xl p-8 sm:p-14 border border-champagne/80 shadow-luxury space-y-8">
           <div className="border-b border-champagne/40 pb-6">
             <span className="text-xs uppercase tracking-widest font-semibold text-gold">Legal Governance</span>
             <h1 className="text-3xl sm:text-4xl font-serif text-charcoal font-medium mt-1">
@@ -65,6 +67,7 @@ export const Privacy: React.FC = () => {
             </section>
           </div>
         </div>
+        </Reveal>
       </div>
     </div>
   );

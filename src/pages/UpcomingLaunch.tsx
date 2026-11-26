@@ -5,6 +5,7 @@ import confetti from 'canvas-confetti';
 import { Calendar, MapPin, Check, ArrowRight, Bell } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { FragranceBottle } from '../components/fragrance/FragranceBottle';
 import { FRAGRANCES } from '../data/fragrances';
@@ -28,7 +29,7 @@ export const UpcomingLaunch: React.FC = () => {
           particleCount: 60,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#B59A68', '#E9D9BF', '#009688', '#FAF8F4']
+          colors: ['#B9B52A', '#02A262', '#2CEEEC', '#001442']
         });
       } catch {
         // Fallback gracefully
@@ -47,16 +48,22 @@ export const UpcomingLaunch: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Calendar className="w-3.5 h-3.5" />
-          <span>Exclusive Tamil Nadu Pre-Launch Showcase</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          A Sovereign Olfactory Premiere
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Five distinct flacons. Five tributes to Indian botanical terroir. Introducing our signature collections in preview to collectors, connoisseurs, and retail partners across Tamil Nadu.
-        </p>
+        <Reveal variant="compass-pop" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Exclusive Tamil Nadu Pre-Launch Showcase</span>
+          </div>
+        </Reveal>
+        <Reveal variant="rise" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            A Sovereign Olfactory Premiere
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Five distinct flacons. Five tributes to Indian botanical terroir. Introducing our signature collections in preview to collectors, connoisseurs, and retail partners across Tamil Nadu.
+          </p>
+        </Reveal>
       </section>
 
       {/* Interactive 5-Bottle Cinematic Carousel */}
@@ -65,8 +72,8 @@ export const UpcomingLaunch: React.FC = () => {
           {/* Left Column: 3D Bottle Visualizer with Custom Silhouette */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center relative min-h-[360px] sm:min-h-[440px]">
             <div
-              className="absolute w-72 h-72 rounded-full filter blur-3xl opacity-25 pointer-events-none transition-colors duration-700"
-              style={{ backgroundColor: activeFragrance.colors.accent }}
+              className="absolute w-96 h-96 rounded-full opacity-40 pointer-events-none"
+              style={{ background: `radial-gradient(circle closest-side, ${activeFragrance.colors.accent} 0%, transparent 100%)` }}
             />
             <FragranceBottle
               type={activeFragrance.visualType}
@@ -295,9 +302,9 @@ export const UpcomingLaunch: React.FC = () => {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-full bg-charcoal text-ivory-100 text-xs uppercase tracking-widest font-semibold hover:bg-gold transition-colors duration-300 shadow-md flex items-center justify-center gap-2"
+                  className="group w-full py-4 rounded-full bg-charcoal text-ivory-100 text-xs uppercase tracking-widest font-semibold hover:bg-gold transition-colors duration-300 shadow-md flex items-center justify-center gap-2"
                 >
-                  <Bell className="w-4 h-4 text-gold" />
+                  <Bell className="w-4 h-4 text-gold-light group-hover:text-pure transition-colors" />
                   <span>Reserve Launch Showcase Priority</span>
                 </button>
               </div>

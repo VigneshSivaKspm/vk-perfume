@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { SectionHeading } from '../components/ui/SectionHeading';
 import { MANUFACTURING_PROCESS } from '../data/process';
 
@@ -42,16 +43,22 @@ export const Process: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Clock className="w-3.5 h-3.5" />
-          <span>The 16-Week Production Roadmap</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          From Botanical Soil to Finished Flacon
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Every perfume batch is treated as a masterwork of patience. Discover the eight disciplined phases that define our manufacturing excellence in Tamil Nadu.
-        </p>
+        <Reveal variant="drop-clean" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Clock className="w-3.5 h-3.5" />
+            <span>The 16-Week Production Roadmap</span>
+          </div>
+        </Reveal>
+        <Reveal variant="drop-clean" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            From Botanical Soil to Finished Flacon
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Every perfume batch is treated as a masterwork of patience. Discover the eight disciplined phases that define our manufacturing excellence in Tamil Nadu.
+          </p>
+        </Reveal>
       </section>
 
       {/* Interactive Step Navigator */}

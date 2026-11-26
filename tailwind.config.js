@@ -7,44 +7,62 @@ export default {
   theme: {
     extend: {
       colors: {
+        pure: '#FFFFFF',
+        porcelain: '#EAF2EE',
+        platinum: '#D2E2DD',
+        graphite: '#335054',
+        silver: '#7B9A94',
         ivory: {
-          50: '#FDFBF7',
-          100: '#FAF8F4', // Warm Ivory primary background
-          200: '#F4EFE6',
-          300: '#EDE7DF', // Warm Sand
-          400: '#D8CEBE',
-          500: '#C2B59F',
+          DEFAULT: '#F6FAF9',
+          50: '#FAFDFC',
+          100: '#F6FAF9', // Soft pearl-teal ivory matching VK Perfume monogram
+          200: '#EAF2EE', // Mist porcelain surface
+          300: '#DCE9E4', // Light mist text on dark surfaces
+          400: '#B8D0C8',
+          500: '#7B9A94',
         },
         champagne: {
-          DEFAULT: '#E9D9BF',
-          light: '#F5ECE0',
-          dark: '#D4BF9D',
+          DEFAULT: '#D2E2DD',
+          light: '#EAF2EE',
+          dark: '#A8C4BC',
+        },
+        brand: {
+          navy: '#001442',       // Isolated VK Perfume Logo "PREMIUM FRAGRANCE" navy
+          ocean: '#00303F',      // Deep ocean teal base
+          deep: '#013E43',       // Dominant monogram deep teal
+          teal: '#01706C',       // Jewel teal primary UI accent
+          emerald: '#02A262',    // Monogram center emerald green
+          mint: '#1AE2BD',       // Luminous emerald-aqua
+          aqua: '#2CEEEC',       // Crown & K highlight aqua-cyan
+          gold: '#B9B52A',       // Crown & V metallic gold
+          goldDark: '#757014',   // Accessible crown gold on light
+          goldLight: '#E8E26A',  // Luminous crown gold on dark
         },
         gold: {
-          light: '#D4BE8D',
-          DEFAULT: '#B59A68', // Muted Antique Gold
-          dark: '#8C7243',
-          metallic: '#C8A96E',
+          light: '#2CEEEC',
+          DEFAULT: '#01706C',
+          dark: '#013E43',
+          metallic: '#B9B52A',
         },
         charcoal: {
-          light: '#3D3A35',
-          DEFAULT: '#25231F', // Charcoal Ink
-          dark: '#161513',
+          light: '#335054',
+          DEFAULT: '#013E43',
+          dark: '#001442',
         },
         botanical: {
-          light: '#A3B09B',
-          DEFAULT: '#8E9C85', // Subtle Botanical Green
-          dark: '#6E7C65',
+          light: '#1AE2BD',
+          DEFAULT: '#02A262',
+          dark: '#016840',
         },
         brandTeal: {
-          light: '#00C9A7',
-          DEFAULT: '#009688', // Matching VK monogram teal
-          dark: '#00695C',
-          deep: '#044343',
+          light: '#2CEEEC',
+          DEFAULT: '#01706C',
+          dark: '#013E43',
+          deep: '#001442',
         },
         brandNavy: {
-          DEFAULT: '#0C2340',
-          dark: '#061324',
+          DEFAULT: '#001442',
+          dark: '#000D2B',
         }
       },
       fontFamily: {
@@ -54,11 +72,11 @@ export default {
         accent: ['"Italiana"', '"Cormorant Garamond"', 'serif'],
       },
       boxShadow: {
-        'luxury': '0 20px 40px -15px rgba(37, 35, 31, 0.07)',
-        'luxury-hover': '0 30px 60px -12px rgba(37, 35, 31, 0.12)',
-        'gold-glow': '0 0 25px rgba(181, 154, 104, 0.25)',
-        'teal-glow': '0 0 30px rgba(0, 150, 136, 0.2)',
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+        'luxury': '0 10px 35px -5px rgba(0, 20, 66, 0.06), 0 0 0 1px rgba(1, 62, 67, 0.04)',
+        'luxury-hover': '0 20px 45px -10px rgba(1, 112, 108, 0.14), 0 0 0 1px rgba(2, 162, 98, 0.18)',
+        'gold-glow': '0 0 25px rgba(185, 181, 42, 0.28)',
+        'teal-glow': '0 0 30px rgba(44, 238, 236, 0.25)',
+        'glass': '0 8px 32px 0 rgba(0, 20, 66, 0.08)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Droplet, Sprout, Wind, ArrowRight } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { SectionHeading } from '../components/ui/SectionHeading';
 
 export const Craftsmanship: React.FC = () => {
@@ -65,16 +66,22 @@ export const Craftsmanship: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-20 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Sprout className="w-3.5 h-3.5" />
-          <span>Botanical Terroir & Extraction Artistry</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          The Soul of Our Distillations
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          True luxury perfume cannot be simulated in a generic chemistry lab. It begins in the fertile soil, the morning mist, and the patient hands of South Indian agricultural artisans.
-        </p>
+        <Reveal variant="petal-float" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Sprout className="w-3.5 h-3.5" />
+            <span>Botanical Terroir & Extraction Artistry</span>
+          </div>
+        </Reveal>
+        <Reveal variant="rise" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            The Soul of Our Distillations
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            True luxury perfume cannot be simulated in a generic chemistry lab. It begins in the fertile soil, the morning mist, and the patient hands of South Indian agricultural artisans.
+          </p>
+        </Reveal>
       </section>
 
       {/* Editorial Botanical Exploration */}
@@ -97,7 +104,7 @@ export const Craftsmanship: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="text-[10px] uppercase tracking-widest font-semibold text-champagne block">
+                    <span className="text-[10px] uppercase tracking-widest font-semibold text-brand-goldLight block">
                       Terroir Provenance
                     </span>
                     <span className="text-sm font-serif font-medium">{botanical.origin}</span>

@@ -17,12 +17,12 @@ export const FragranceCard: React.FC<FragranceCardProps> = ({ fragrance, index =
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative bg-white/70 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-champagne/60 hover:border-gold/60 shadow-luxury hover:shadow-luxury-hover transition-all duration-500 flex flex-col justify-between overflow-hidden"
+      className="group relative bg-white/90 rounded-3xl p-6 sm:p-8 border border-champagne/60 hover:border-gold/60 shadow-luxury hover:shadow-luxury-hover transition-all duration-500 flex flex-col justify-between overflow-hidden"
     >
       {/* Background ambient glow on hover */}
       <div
-        className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none"
-        style={{ backgroundColor: fragrance.colors.accent }}
+        className="absolute -top-32 -right-32 w-80 h-80 rounded-full opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"
+        style={{ background: `radial-gradient(circle closest-side, ${fragrance.colors.accent} 0%, transparent 100%)` }}
       />
 
       <div>

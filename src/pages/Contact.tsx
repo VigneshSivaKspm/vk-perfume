@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, Check, MessageSquare, Clock, Copy, ExternalLink } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { COMPANY_INFO } from '../data/company';
 
 type EnquiryType = 'general' | 'wholesale' | 'private-label' | 'launch';
@@ -11,9 +12,23 @@ type EnquiryType = 'general' | 'wholesale' | 'private-label' | 'launch';
 export const Contact: React.FC = () => {
   const [searchParams] = useSearchParams();
   const typeParam = searchParams.get('type') as EnquiryType;
-  const initialType: EnquiryType = ['general', 'wholesale', 'private-label', 'launch'].includes(typeParam) ? typeParam : 'general';
+  const paramType: EnquiryType = ['general', 'wholesale', 'private-label', 'launch'].includes(typeParam)
+    ? typeParam
+    : 'general';
 
-  const [enquiryType, setEnquiryType] = useState<EnquiryType>(initialType);
+  const [enquirySelection, setEnquirySelection] = useState<{
+    param: EnquiryType | null;
+    value: EnquiryType;
+  } | null>(null);
+
+  const enquiryType: EnquiryType =
+    enquirySelection && enquirySelection.param === typeParam
+      ? enquirySelection.value
+      : paramType;
+
+  const setEnquiryType = (value: EnquiryType) => {
+    setEnquirySelection({ param: typeParam, value });
+  };
 
   const [formData, setFormData] = useState({
     name: '',
@@ -64,16 +79,22 @@ export const Contact: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Mail className="w-3.5 h-3.5" />
-          <span>Concierge & Commercial Inquiries</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          Initiate a Consultation
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Whether commissioning a bespoke perfume collection, discussing private label contract manufacturing, or joining our preview showcase in Tamil Nadu, our team welcomes your correspondence.
-        </p>
+        <Reveal variant="card-unfold" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Mail className="w-3.5 h-3.5" />
+            <span>Concierge & Commercial Inquiries</span>
+          </div>
+        </Reveal>
+        <Reveal variant="card-unfold" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            Initiate a Consultation
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Whether commissioning a bespoke perfume collection, discussing private label contract manufacturing, or joining our preview showcase in Tamil Nadu, our team welcomes your correspondence.
+          </p>
+        </Reveal>
       </section>
 
       {/* Main Grid: Form & Info */}
@@ -246,13 +267,13 @@ export const Contact: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 rounded-full bg-charcoal text-ivory-100 text-xs uppercase tracking-widest font-semibold hover:bg-gold transition-colors duration-300 shadow-luxury flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="group w-full py-4 rounded-full bg-charcoal text-ivory-100 text-xs uppercase tracking-widest font-semibold hover:bg-gold transition-colors duration-300 shadow-luxury flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <span>Validating Brief...</span>
                     ) : (
                       <>
-                        <Send className="w-4 h-4 text-gold" />
+                        <Send className="w-4 h-4 text-gold-light group-hover:text-pure transition-colors" />
                         <span>Submit Project Brief</span>
                       </>
                     )}
@@ -270,7 +291,7 @@ export const Contact: React.FC = () => {
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-white rounded-3xl p-8 border border-champagne/80 shadow-luxury space-y-6">
               <div className="flex items-center gap-3">
-                <img
+                <img loading="lazy" decoding="async"
                   src={COMPANY_INFO.monogramAsset}
                   alt="VK Perfumes Monogram"
                   className="w-10 h-10 object-contain"
@@ -334,8 +355,8 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Tamil Nadu Corridor Map Callout */}
-            <div className="bg-charcoal text-ivory-100 rounded-3xl p-8 border border-gold/40 shadow-luxury space-y-3">
-              <span className="text-xs uppercase tracking-widest font-semibold text-gold">Regional Presence</span>
+            <div className="bg-[#001442] text-ivory-100 rounded-3xl p-8 border border-brand-aqua/35 shadow-luxury space-y-3">
+              <span className="text-xs uppercase tracking-widest font-semibold text-brand-goldLight">Regional Presence</span>
               <h4 className="text-xl font-serif font-medium text-ivory-100">The Coromandel Scent Corridor</h4>
               <p className="text-xs text-ivory-300 font-light leading-relaxed">
                 Direct road and freight connectivity between our distillation facilities and the major shipping ports of Chennai and Tuticorin for seamless international export.

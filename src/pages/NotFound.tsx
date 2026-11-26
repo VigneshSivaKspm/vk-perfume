@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Compass, ArrowRight } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 
 export const NotFound: React.FC = () => {
   return (
@@ -14,7 +15,8 @@ export const NotFound: React.FC = () => {
 
       <PageBackground variant="minimal" />
 
-      <div className="max-w-md w-full bg-white rounded-3xl p-8 sm:p-12 border border-champagne/80 shadow-luxury text-center space-y-6">
+      <Reveal variant="compass-pop" delay={0.16} className="max-w-md w-full">
+        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-champagne/80 shadow-luxury text-center space-y-6">
         <div className="w-14 h-14 rounded-full bg-ivory-100 flex items-center justify-center text-gold mx-auto border border-champagne">
           <Compass className="w-7 h-7" />
         </div>
@@ -46,7 +48,8 @@ export const NotFound: React.FC = () => {
             <span>Browse The 5 Fragrances</span>
           </Link>
         </div>
-      </div>
+        </div>
+      </Reveal>
     </div>
   );
 };

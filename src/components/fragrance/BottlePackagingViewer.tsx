@@ -10,24 +10,24 @@ export const BottlePackagingViewer: React.FC = () => {
   const [selectedBoxStyle, setSelectedBoxStyle] = useState<string>('rigid');
 
   const capFinishes = [
-    { id: 'bronze', name: 'Brushed Architectural Bronze', color: '#8C7343', spec: 'Machined zinc alloy with satin directional brushing & heavy internal magnetic click closure.' },
-    { id: 'rosegold', name: 'Polished Rose Gold Filigree', color: '#E8B49B', spec: 'Electroplated warm 18K rose gold sphere with laser-engraved floral arabesque detailing.' },
-    { id: 'silver', name: 'Mirror Marine Chrome', color: '#B0C2CE', spec: 'High-polish rhodium finish with precision knurled tactile grip rings and anti-fingerprint coating.' },
-    { id: 'gold', name: 'Satin Champagne Gold', color: '#D4AF37', spec: 'Micro-beaded satin gold finish with faceted geometric angles matching diamond-cut crystal shoulders.' },
-    { id: 'fluted', name: 'Fluted Flacon Gold Crown', color: '#B59A68', spec: 'Solid brass casting with 36-rib axial fluting and weighted 85-gram ergonomic haptic heft.' }
+    { id: 'bronze', name: 'Brushed Deep Teal Alloy', color: '#013E43', spec: 'Machined zinc alloy with satin directional brushing & heavy internal magnetic click closure.' },
+    { id: 'rosegold', name: 'Polished Mint Gilt Filigree', color: '#1AE2BD', spec: 'Electroplated mint-lacquered sphere with laser-engraved floral arabesque detailing.' },
+    { id: 'silver', name: 'Mirror Marine Chrome', color: '#8FD9D8', spec: 'High-polish rhodium finish with precision knurled tactile grip rings and anti-fingerprint coating.' },
+    { id: 'gold', name: 'Satin Crown Gold', color: '#B9B52A', spec: 'Micro-beaded satin gold finish with faceted geometric angles matching diamond-cut crystal shoulders.' },
+    { id: 'fluted', name: 'Fluted Emerald Crown', color: '#02A262', spec: 'Solid brass casting with 36-rib axial fluting and weighted 85-gram ergonomic haptic heft.' }
   ];
 
   const boxStyles = [
     {
       id: 'rigid',
       name: 'Rigid Shoulder Presentation Box',
-      finish: 'Warm Ivory Textured Linen & Gold Hot Foil',
+      finish: 'Pearl-Mint Textured Linen & Crown-Gold Hot Foil',
       description: 'Hand-assembled 1200gsm grayboard core wrapped in natural FSC-certified cotton-linen paper with debossed gold foil monogramming and satin pull-ribbon.'
     },
     {
       id: 'vault',
       name: 'Vault Double-Door Coffer',
-      finish: 'Deep Charcoal Velvet & Beveled Plinth',
+      finish: 'Deep Teal Velvet & Beveled Plinth',
       description: 'Opulent double-wing magnetic closure opening like a jewelry vitrine, showcasing the bottle upright upon an angled velvet pedestal.'
     },
     {
@@ -39,7 +39,7 @@ export const BottlePackagingViewer: React.FC = () => {
   ];
 
   return (
-    <div className="w-full bg-white/80 backdrop-blur-md rounded-3xl p-6 sm:p-10 border border-champagne/60 shadow-luxury">
+    <div className="w-full bg-white/80 rounded-3xl p-6 sm:p-10 border border-champagne/60 shadow-luxury">
       {/* Category Tabs */}
       <div className="flex flex-wrap items-center justify-between pb-6 mb-8 border-b border-champagne/40 gap-4">
         <div>
@@ -85,11 +85,11 @@ export const BottlePackagingViewer: React.FC = () => {
           <div className="mt-4 text-center">
             <span className="text-xs uppercase tracking-wider font-semibold text-gold">Current Concept Model</span>
             <p className="text-sm font-serif font-medium text-charcoal capitalize">
-              {selectedSilhouette === 'oud' ? 'Imperial Monolith — Smoked Amber Flacon'
+              {selectedSilhouette === 'oud' ? 'Imperial Monolith — Deep Teal Flacon'
                 : selectedSilhouette === 'jasmine' ? 'Opaline Teardrop — Frosted Blossom Glass'
-                : selectedSilhouette === 'aquatic' ? 'Wave-Carved Facet — Cerulean Oceanic Crystal'
+                : selectedSilhouette === 'aquatic' ? 'Wave-Carved Facet — Aqua Oceanic Crystal'
                 : selectedSilhouette === 'citrus' ? 'Diamond Octagon — Solstice Cut Prism'
-                : 'Sensual Amphora — Cured Honey Caramel Flacon'}
+                : 'Sensual Amphora — Emerald Jade Flacon'}
             </p>
           </div>
         </div>
@@ -212,9 +212,9 @@ export const BottlePackagingViewer: React.FC = () => {
           <div className="pt-2">
             <a
               href="/contact?type=private-label"
-              className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-charcoal text-ivory-100 text-sm font-medium tracking-wide hover:bg-gold transition-colors duration-300"
+              className="group inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-charcoal text-ivory-100 text-sm font-medium tracking-wide hover:bg-gold transition-colors duration-300"
             >
-              <Sparkles className="w-4 h-4 text-gold" />
+              <Sparkles className="w-4 h-4 text-gold-light group-hover:text-pure transition-colors" />
               <span>Inquire for Custom Private Label Tooling</span>
             </a>
           </div>

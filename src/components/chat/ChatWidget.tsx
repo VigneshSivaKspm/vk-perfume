@@ -86,11 +86,11 @@ export const ChatWidget: React.FC = () => {
           aria-label={`${COMPANY_INFO.name} chat assistant`}
           className="flex flex-col w-[calc(100vw-2rem)] sm:w-96 h-[min(32rem,calc(100dvh-10rem))] rounded-2xl overflow-hidden bg-ivory-50 border border-champagne shadow-luxury-hover"
         >
-          <header className="flex items-center gap-3 px-4 py-3 bg-charcoal text-ivory-100">
-            <img src={COMPANY_INFO.monogramAsset} alt="" className="w-9 h-9 object-contain" />
+          <header className="flex items-center gap-3 px-4 py-3 bg-[#001442] text-ivory-100 border-b border-brand-aqua/35">
+            <img loading="lazy" decoding="async" src={COMPANY_INFO.monogramAsset} alt="" className="w-9 h-9 object-contain" />
             <div className="flex-1">
               <h2 className="font-serif text-base font-semibold">{COMPANY_INFO.name}</h2>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-gold-light">AI Assistant</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-brand-goldLight">AI Assistant</p>
             </div>
             <button
               type="button"
@@ -167,7 +167,7 @@ export const ChatWidget: React.FC = () => {
         onClick={() => setOpen((value) => !value)}
         aria-label={open ? 'Close chat' : 'Open chat'}
         aria-expanded={open}
-        className="w-14 h-14 rounded-full bg-charcoal text-gold-light border border-gold/40 shadow-luxury-hover flex items-center justify-center hover:scale-105 transition-transform"
+        className="w-14 h-14 rounded-full bg-[#001442] text-brand-aqua border border-brand-aqua/55 shadow-[0_12px_30px_-6px_rgba(1,62,67,0.4)] flex items-center justify-center hover:scale-105 transition-transform"
       >
         {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
       </button>
@@ -179,7 +179,7 @@ const Bubble: React.FC<Message> = ({ role, content }) => (
   <div className={`flex ${role === 'user' ? 'justify-end' : 'justify-start'}`}>
     <p
       className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl px-3.5 py-2 ${
-        role === 'user' ? 'bg-charcoal text-ivory-100' : 'bg-white border border-champagne/60 text-charcoal'
+        role === 'user' ? 'bg-[#001442] text-ivory-100' : 'bg-white border border-champagne/60 text-charcoal'
       }`}
     >
       {content}

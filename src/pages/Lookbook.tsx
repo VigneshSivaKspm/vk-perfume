@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Camera, X, Maximize2 } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { LOOKBOOK_GALLERY } from '../data/lookbook';
 import type { LookbookItem } from '../types';
 
@@ -27,16 +28,22 @@ export const Lookbook: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-14 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Camera className="w-3.5 h-3.5" />
-          <span>Visual Atelier & Archive</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          The Photographic Lookbook
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Moments captured across our South Indian harvest fields, cleanroom formulation laboratories, and bespoke flacon finishing benches.
-        </p>
+        <Reveal variant="zoom-settle" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Camera className="w-3.5 h-3.5" />
+            <span>Visual Atelier & Archive</span>
+          </div>
+        </Reveal>
+        <Reveal variant="zoom-settle" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            The Photographic Lookbook
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Moments captured across our South Indian harvest fields, cleanroom formulation laboratories, and bespoke flacon finishing benches.
+          </p>
+        </Reveal>
 
         {/* Filters */}
         <div className="flex flex-wrap justify-center gap-2 mt-8">
@@ -110,7 +117,7 @@ export const Lookbook: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-charcoal/90 backdrop-blur-md p-4 sm:p-8 flex items-center justify-center"
+            className="fixed inset-0 z-50 bg-charcoal/90 p-4 sm:p-8 flex items-center justify-center"
             onClick={() => setSelectedItem(null)}
           >
             <div
@@ -126,7 +133,7 @@ export const Lookbook: React.FC = () => {
               </button>
 
               <div className="max-h-[60vh] sm:max-h-[70vh] bg-ivory-50 flex items-center justify-center overflow-hidden">
-                <img
+                <img loading="lazy" decoding="async"
                   src={selectedItem.imageUrl}
                   alt={selectedItem.title}
                   className="w-full h-full object-cover max-h-[70vh]"

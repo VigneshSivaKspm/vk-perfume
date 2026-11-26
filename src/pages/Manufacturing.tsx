@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ShieldCheck, Layers, CheckCircle2, FlaskConical, Snowflake } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { SectionHeading } from '../components/ui/SectionHeading';
 
 export const Manufacturing: React.FC = () => {
@@ -17,16 +18,22 @@ export const Manufacturing: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-20 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Industrial Standards & Formulation Science</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          Precision Contract Fragrance Manufacturing
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Operating from our integrated research and manufacturing campus in Tamil Nadu, VK Perfumes delivers world-class olfactive engineering, from botanical distillation to certified shelf-ready retail packaging.
-        </p>
+        <Reveal variant="zoom-settle" delay={0.12}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>Industrial Standards & Formulation Science</span>
+          </div>
+        </Reveal>
+        <Reveal variant="zoom-settle" delay={0.2}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            Precision Contract Fragrance Manufacturing
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.28}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Operating from our integrated research and manufacturing campus in Tamil Nadu, VK Perfumes delivers world-class olfactive engineering, from botanical distillation to certified shelf-ready retail packaging.
+          </p>
+        </Reveal>
       </section>
 
       {/* Facilities Overview Cards */}

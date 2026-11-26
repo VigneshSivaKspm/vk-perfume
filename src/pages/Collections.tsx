@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
 import { PageBackground } from '../components/animations/PageBackground';
+import { Reveal } from '../components/animations/Reveal';
 import { FragranceBottle } from '../components/fragrance/FragranceBottle';
 import { FRAGRANCES } from '../data/fragrances';
 
@@ -34,33 +35,41 @@ export const Collections: React.FC = () => {
 
       {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-16 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Haute Collection • Tamil Nadu Launch Showcase</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
-          Five Sovereign Olfactive Visions
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
-          Every fragrance in this showcase represents a distinct sculptural flacon silhouette, bespoke botanical extraction, and sensory narrative formulated in Tamil Nadu.
-        </p>
+        <Reveal variant="drop-clean" delay={0.14}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-champagne text-xs uppercase tracking-widest font-semibold text-gold mb-4 shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Haute Collection • Tamil Nadu Launch Showcase</span>
+          </div>
+        </Reveal>
+        <Reveal variant="rise" delay={0.22}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-serif text-charcoal font-normal tracking-tight">
+            Five Sovereign Olfactive Visions
+          </h1>
+        </Reveal>
+        <Reveal variant="rise" delay={0.3}>
+          <p className="mt-4 text-base sm:text-lg text-charcoal-light font-light max-w-2xl mx-auto leading-relaxed">
+            Every fragrance in this showcase represents a distinct sculptural flacon silhouette, bespoke botanical extraction, and sensory narrative formulated in Tamil Nadu.
+          </p>
+        </Reveal>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 sm:px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium transition-all ${
-                selectedCategory === cat
-                  ? 'bg-charcoal text-ivory-100 shadow-md scale-105'
-                  : 'bg-white text-charcoal border border-champagne/80 hover:border-gold hover:bg-ivory-50'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        <Reveal variant="rise" delay={0.38}>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-10">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs uppercase tracking-wider font-medium transition-all ${
+                  selectedCategory === cat
+                    ? 'bg-charcoal text-ivory-100 shadow-md scale-105'
+                    : 'bg-white text-charcoal border border-champagne/80 hover:border-gold hover:bg-ivory-50'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       {/* Fragrances Presentation List */}
@@ -81,8 +90,8 @@ export const Collections: React.FC = () => {
             >
               {/* Background ambient light */}
               <div
-                className="absolute top-0 right-0 w-96 h-96 rounded-full filter blur-3xl opacity-25 pointer-events-none"
-                style={{ backgroundColor: fragrance.colors.accent }}
+                className="absolute top-0 right-0 w-[30rem] h-[30rem] rounded-full opacity-40 pointer-events-none"
+                style={{ background: `radial-gradient(circle closest-side, ${fragrance.colors.accent} 0%, transparent 100%)` }}
               />
 
               {/* Left / Bottle 3D Presentation */}

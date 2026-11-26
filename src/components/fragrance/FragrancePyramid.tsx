@@ -14,8 +14,8 @@ interface FragrancePyramidProps {
 
 export const FragrancePyramid: React.FC<FragrancePyramidProps> = ({
   notes,
-  accentColor = '#B59A68',
-  pillBg = '#F3E5D4'
+  accentColor = '#01706C',
+  pillBg = '#EAF2EE'
 }) => {
   const [activeTier, setActiveTier] = useState<'top' | 'heart' | 'base'>('heart');
 
@@ -50,7 +50,7 @@ export const FragrancePyramid: React.FC<FragrancePyramidProps> = ({
   ];
 
   return (
-    <div className="w-full bg-white/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-champagne/40 shadow-luxury">
+    <div className="w-full bg-white/90 rounded-2xl p-6 sm:p-8 border border-champagne/40 shadow-luxury">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-champagne/40 gap-4">
         <div>
           <span className="text-xs uppercase tracking-widest font-semibold text-gold">Sensory Architecture</span>
@@ -159,7 +159,7 @@ export const FragrancePyramid: React.FC<FragrancePyramidProps> = ({
                         style={{
                           backgroundColor: pillBg,
                           borderColor: accentColor,
-                          color: '#25231F'
+                          color: '#013E43'
                         }}
                       >
                         {item}
